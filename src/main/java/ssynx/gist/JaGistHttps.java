@@ -9,6 +9,8 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 class JaGistHttps {
+    private static int lastCode;
+    private static String lastErrorMessage;
 
     private static String getResponse(final InputStream stream) {
         String full="", line;
@@ -27,12 +29,37 @@ class JaGistHttps {
         return full;
     }
 
+    private static void assignLast(HttpsURLConnection conn) {
+        try {
+            lastCode = conn.getResponseCode();
+            lastErrorMessage = conn.getResponseMessage();
+        } catch(IOException ioe) {
+            lastCode = -1;
+            lastErrorMessage = "Unknown";
+        }
+    }
+
+    public static int getLastCode() {
+        return lastCode;
+    }
+
+    public static String getLastErrorMessage() {
+        return lastErrorMessage;
+    }
+
     public static String get()
             throws IOException {
         final URL target = new URL("https://api.github.com/gists");
         final HttpsURLConnection connection = (HttpsURLConnection) target.openConnection();
 
-        return getResponse(connection.getInputStream());
+        String res;
+        try {
+            res = getResponse(connection.getInputStream());
+        } finally {
+            assignLast(connection);
+        }
+
+        return res;
     }
 
     public static String get(final String operation)
@@ -40,7 +67,14 @@ class JaGistHttps {
         final URL target = new URL("https://api.github.com/gists/"+operation);
         final HttpsURLConnection connection = (HttpsURLConnection) target.openConnection();
 
-        return getResponse(connection.getInputStream());
+        String res;
+        try {
+            res = getResponse(connection.getInputStream());
+        } finally {
+            assignLast(connection);
+        }
+
+        return res;
     }
 
     public static String post(final String operation, final String what)
@@ -57,7 +91,14 @@ class JaGistHttps {
         requestBody.writeBytes(what);
         requestBody.close();
 
-        return getResponse(connection.getInputStream());
+        String res;
+        try {
+            res = getResponse(connection.getInputStream());
+        } finally {
+            assignLast(connection);
+        }
+
+        return res;
     }
 
     //delete

@@ -1,6 +1,7 @@
 package ssynx.gist;
 
 import java.net.Authenticator;
+import java.util.Set;
 
 public class JaGist {
 
@@ -17,11 +18,11 @@ public class JaGist {
             return null;
         }
 
-        public static Gist[] user(final String user) {
+        public static Set<Gist> user(final String user) {
             return null;
         }
 
-        public static Gist[] starred() {
+        public static Set<Gist> starred() {
             return null;
         }
 
@@ -33,7 +34,7 @@ public class JaGist {
             return null;
         }
 
-        public static Gist[] singleCommits(final String id) {
+        public static Set<Gist> singleCommits(final String id) {
             return null;
         }
 
@@ -41,7 +42,7 @@ public class JaGist {
             return false;
         }
 
-        public static Gist[] forks(final String id) {
+        public static Set<Gist> forks(final String id) {
             return null;
         }
     }
