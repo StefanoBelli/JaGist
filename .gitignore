@@ -1,6 +1,7 @@
 gradlew
 .idea/
 gradle/
+.gradle/
 build/
 *.class
 *.jar
