@@ -1,0 +1,17 @@
+version = 0.0
+
+apply plugin: 'java'
+
+jar {
+	manifest {
+		attributes 'Implementation-Version': version
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile group: 'org.json', name: 'json', version: "20160810"
+}
