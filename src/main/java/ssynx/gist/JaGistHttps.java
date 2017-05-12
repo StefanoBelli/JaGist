@@ -59,4 +59,8 @@ class JaGistHttps {
 
         return getResponse(connection.getInputStream());
     }
+
+    //delete
+    //put
+    //patch
 }
