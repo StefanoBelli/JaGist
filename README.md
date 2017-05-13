@@ -16,7 +16,16 @@ If *org.json* is not availible, then Gradle will automatically fetch it for you.
 
 ### Documentation
 
-Next . . . :)
+GitHub Pages is up!
+[Check here!](https://stefanobelli.github.io/JaGists/html/index.html)
+
+Alternatively, generate docs your own:
+
+~~~
+ $ doxygen Doxyfile
+ $ cd docs/html
+ $ open index.html
+~~~
 
 ### Compatibility
 
