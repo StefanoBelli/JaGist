@@ -1,3 +1,5 @@
+[![Travis](https://img.shields.io/travis/StefanoBelli/JaGist.svg)]() [![GitHub tag](https://img.shields.io/github/tag/StefanoBelli/JaGist.svg)]() [![Copyleft](https://img.shields.io/badge/copyleft-withlove-red.svg)]()
+
 # JaGist
 GitHub Gist Java APIs
 
