@@ -17,7 +17,7 @@ If *org.json* is not availible, then Gradle will automatically fetch it for you.
 ### Documentation
 
 GitHub Pages is up!
-[Check here!](https://stefanobelli.github.io/JaGists/html/index.html)
+[Check here!](https://stefanobelli.github.io/JaGist/html)
 
 Alternatively, generate docs your own:
 
