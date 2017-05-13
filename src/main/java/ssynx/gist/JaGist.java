@@ -1,7 +1,11 @@
 package ssynx.gist;
 
+import java.io.IOException;
 import java.net.Authenticator;
+import java.util.HashSet;
 import java.util.Set;
+
+import org.json.JSONArray;
 
 public class JaGist {
 
@@ -10,8 +14,26 @@ public class JaGist {
     }
 
     public static class GetGist {
-        public static Gist pub() {
-            return null;
+        public static Set<Gist> pub() throws JaGistException {
+            final JSONArray gistsArray;
+            final Set<Gist> gists = new HashSet<>();
+            final String jsonStr;
+
+            try {
+                jsonStr = JaGistHttps.get();
+            } catch(IOException ioe) {
+                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
+                        JaGistHttps.getLastCode());
+            }
+
+            System.out.println("str: " + jsonStr);
+            if(jsonStr != null) {
+                gistsArray = new JSONArray(jsonStr);
+                for (int i = 0; i < gistsArray.length(); i++)
+                    gists.add(new Gist(gistsArray.get(i).toString()));
+            }
+
+            return gists;
         }
 
         public static Gist pub(final String timestamp) {

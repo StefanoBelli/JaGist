@@ -136,7 +136,7 @@ public class Gist {
     public String getUpdatedAt() {
         return updatedAt;
     }
-
+    
     public String getUser() {
         return user;
     }
