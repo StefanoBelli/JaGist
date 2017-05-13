@@ -1,7 +1,5 @@
 package ssynx.gist;
 
-import com.sun.istack.internal.Nullable;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.BufferedReader;
@@ -14,7 +12,6 @@ class JaGistHttps {
     private static int lastCode;
     private static String lastErrorMessage;
 
-    @Nullable
     private static String getResponse(final InputStream stream) {
         String full="", line;
 
@@ -50,7 +47,6 @@ class JaGistHttps {
         return lastErrorMessage;
     }
 
-    @Nullable
     public static String get()
             throws IOException {
         final URL target = new URL("https://api.github.com/gists");
@@ -66,7 +62,6 @@ class JaGistHttps {
         return res;
     }
 
-    @Nullable
     public static String get(final String operation)
             throws IOException {
         final URL target = new URL("https://api.github.com/gists/"+operation);
@@ -82,7 +77,6 @@ class JaGistHttps {
         return res;
     }
 
-    @Nullable
     public static String post(final String operation, final String what)
             throws IOException {
         final URL target = new URL("https://api.github.com/gists/" + operation);
