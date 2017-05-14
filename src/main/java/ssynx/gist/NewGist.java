@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
+import java.nio.charset.Charset;
 
 import org.json.JSONObject;
 
@@ -15,17 +17,22 @@ public class NewGist {
     private Map<String,String> files = new HashMap<>();
 
     private String readFile(File f) throws IOException {
-        String content = "";
+        StringBuilder content = new StringBuilder();
 
-        FileReader reader = new FileReader(f);
+        InputStreamReader reader;
+        reader = new InputStreamReader(new FileInputStream(f),
+                        Charset.forName("UTF-8"));
 
         char[] bytes = new char[1024];
-        while(reader.read(bytes) != -1)
-            content += new String(bytes);
 
-        reader.close();
+        try {
+            while (reader.read(bytes) != -1)
+                content.append(new String(bytes));
+        } finally {
+            reader.close();
+        }
 
-        return content;
+        return content.toString();
     }
 
     public NewGist(final String description, final boolean isPublic,

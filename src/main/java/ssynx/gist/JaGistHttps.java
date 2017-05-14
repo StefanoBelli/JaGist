@@ -1,10 +1,7 @@
 package ssynx.gist;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.DataOutputStream;
+import java.io.*;
+import java.nio.charset.Charset;
 import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
@@ -13,20 +10,21 @@ class JaGistHttps {
     private static String lastErrorMessage = "";
 
     private static String getResponse(final InputStream stream) {
-        String full="", line;
+        StringBuilder full = new StringBuilder();
+        String line;
 
         BufferedReader streamBuf = new BufferedReader(
-                new InputStreamReader(stream));
+                new InputStreamReader(stream,Charset.forName("UTF-8")));
 
         try {
             while ((line = streamBuf.readLine()) != null)
-                full += line + '\n';
+                full.append(line);
             streamBuf.close();
         } catch(IOException ioe) {
             return null;
         }
 
-        return full;
+        return full.toString();
     }
 
     private static void assignLast(HttpsURLConnection conn) {
@@ -39,15 +37,15 @@ class JaGistHttps {
         }
     }
 
-    public static int getLastCode() {
+    static int getLastCode() {
         return lastCode;
     }
 
-    public static String getLastErrorMessage() {
+    static String getLastErrorMessage() {
         return lastErrorMessage;
     }
 
-    public static String get()
+    static String get()
             throws IOException {
         final URL target = new URL("https://api.github.com/gists");
         final HttpsURLConnection connection = (HttpsURLConnection) target.openConnection();
@@ -62,7 +60,7 @@ class JaGistHttps {
         return res;
     }
 
-    public static String get(final String operation)
+    static String get(final String operation)
             throws IOException {
         final URL target = new URL("https://api.github.com/gists/"+operation);
         final HttpsURLConnection connection = (HttpsURLConnection) target.openConnection();
@@ -77,7 +75,7 @@ class JaGistHttps {
         return res;
     }
 
-    public static String post(final String operation, final String what)
+    static String post(final String operation, final String what)
             throws IOException {
         final URL target = new URL("https://api.github.com/gists/" + operation);
         final HttpsURLConnection connection = (HttpsURLConnection) target.openConnection();
@@ -87,7 +85,7 @@ class JaGistHttps {
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/json");
 
-        DataOutputStream requestBody = new DataOutputStream(connection.getOutputStream());
+        final DataOutputStream requestBody = new DataOutputStream(connection.getOutputStream());
         requestBody.writeBytes(what);
         requestBody.close();
 
