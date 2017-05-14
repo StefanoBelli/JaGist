@@ -26,7 +26,6 @@ public class JaGist {
                         JaGistHttps.getLastCode());
             }
 
-            System.out.println("str: " + jsonStr);
             if(jsonStr != null) {
                 gistsArray = new JSONArray(jsonStr);
                 for (int i = 0; i < gistsArray.length(); i++)

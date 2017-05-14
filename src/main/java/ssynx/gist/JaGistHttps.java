@@ -9,8 +9,8 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 class JaGistHttps {
-    private static int lastCode;
-    private static String lastErrorMessage;
+    private static int lastCode = 0;
+    private static String lastErrorMessage = "";
 
     private static String getResponse(final InputStream stream) {
         String full="", line;

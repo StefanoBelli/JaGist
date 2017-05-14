@@ -30,7 +30,7 @@ public class GistOwner {
         login = ownerObject.getString("login");
         id = ownerObject.getInt("id");
         avatarUrl = ownerObject.getString("avatar_url");
-        gravatarId = ownerObject.getString("gravatar_url");
+        gravatarId = ownerObject.getString("gravatar_id");
         url = ownerObject.getString("url");
         htmlUrl = ownerObject.getString("html_url");
         followersUrl = ownerObject.getString("followers_url");

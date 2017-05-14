@@ -10,8 +10,8 @@ public class GistFile {
     private final BigInteger size;
     private final String rawUrl;
     private final String type;
-    private final boolean truncated;
-    private final String language;
+    //private final boolean truncated;
+    //private final String language;
 
     public GistFile(final JSONObject fileObject) {
         jsonPiece = fileObject.toString();
@@ -19,8 +19,8 @@ public class GistFile {
         size = fileObject.getBigInteger("size");
         rawUrl = fileObject.getString("raw_url");
         type = fileObject.getString("type");
-        truncated = fileObject.getBoolean("truncated");
-        language = fileObject.getString("language");
+        //truncated = fileObject.getBoolean("truncated");
+        //language = fileObject.getString("language");
     }
 
     @Override
@@ -32,9 +32,9 @@ public class GistFile {
         return size;
     }
 
-    public String getLanguage() {
+    /*public String getLanguage() {
         return language;
-    }
+    }*/
 
     public String getRawUrl() {
         return rawUrl;
