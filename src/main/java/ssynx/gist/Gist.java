@@ -17,7 +17,7 @@ public class Gist {
     private final String forksUrl;
     private final String commitsUrl;
     private final String id;
-    //private final String description;
+    private final Object description;
     private final boolean isPublic;
     private final Object user;
     private final String commentsUrl;
@@ -29,7 +29,7 @@ public class Gist {
     private final String updatedAt;
     private Set<GistHistory> history;
     private Set<GistFork> forks;
-    //private final GistOwner owner;
+    private GistOwner owner;
     private final Map<String,GistFile> files;
 
     public Gist(final String fullJson) {
@@ -39,7 +39,7 @@ public class Gist {
         forksUrl = gistObject.getString("forks_url");
         commitsUrl = gistObject.getString("commits_url");
         id = gistObject.getString("id");
-        //description = gistObject.getString("description");
+        description = gistObject.get("description");
         isPublic = gistObject.getBoolean("public");
         user = gistObject.get("user");
         commentsUrl = gistObject.getString("comments_url");
@@ -49,7 +49,13 @@ public class Gist {
         gitPushUrl = gistObject.getString("git_push_url");
         createdAt = gistObject.getString("created_at");
         updatedAt = gistObject.getString("updated_at");
-        //owner = new GistOwner(gistObject.getJSONObject("owner"));
+
+        try {
+            owner = new GistOwner(gistObject.getJSONObject("owner"));
+        } catch(JSONException noSuchOwner) {
+            owner = null;
+        }
+
         files = new HashMap<>();
         final JSONObject filesObject = gistObject.getJSONObject("files");
         for(final String key : filesObject.keySet())
@@ -85,9 +91,9 @@ public class Gist {
         return url;
     }
 
-    //public GistOwner getOwner() {
-    //    return owner;
-    //}
+    public GistOwner getOwner() {
+        return owner;
+    }
 
     public int getComments() {
         return comments;
@@ -109,9 +115,9 @@ public class Gist {
         return createdAt;
     }
 
-    //public String getDescription() {
-    //    return description;
-    //}
+    public Object getDescription() {
+        return description;
+    }
 
     public String getForksUrl() {
         return forksUrl;
