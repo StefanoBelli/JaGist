@@ -14,7 +14,7 @@ public class JaGist {
     }
 
     public static class GetGist {
-        public static Set<Gist> pub() throws JaGistException {
+        public static Gist[] pub() throws JaGistException {
             final JSONArray gistsArray;
             final Set<Gist> gists = new HashSet<>();
             final String jsonStr;
@@ -32,18 +32,18 @@ public class JaGist {
                     gists.add(new Gist(gistsArray.get(i).toString()));
             }
 
-            return gists;
+            return gists.toArray(new Gist[gists.size()]);
         }
 
         public static Gist pub(final String timestamp) {
             return null;
         }
 
-        public static Set<Gist> user(final String user) {
+        public static Gist[] user(final String user) {
             return null;
         }
 
-        public static Set<Gist> starred() {
+        public static Gist[] starred() {
             return null;
         }
 
@@ -55,7 +55,7 @@ public class JaGist {
             return null;
         }
 
-        public static Set<Gist> singleCommits(final String id) {
+        public static Gist[] singleCommits(final String id) {
             return null;
         }
 
@@ -63,7 +63,7 @@ public class JaGist {
             return false;
         }
 
-        public static Set<Gist> forks(final String id) {
+        public static Gist[] forks(final String id) {
             return null;
         }
     }
