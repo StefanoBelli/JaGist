@@ -17,7 +17,7 @@ public class GistHistory {
         url = historyObject.getString("url");
         version = historyObject.getString("version");
         user = new GistOwner(historyObject.getJSONObject("user"));
-        commitedAt = historyObject.getString("commited_at");
+        commitedAt = historyObject.getString("committed_at");
         changeStatus = new GistChangeStatus(historyObject
                 .getJSONObject("change_status"));
     }

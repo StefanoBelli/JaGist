@@ -17,9 +17,9 @@ public class Gist {
     private final String forksUrl;
     private final String commitsUrl;
     private final String id;
-    private final Object description;
+    private String description;
     private final boolean isPublic;
-    private final Object user;
+    private final String user;
     private final String commentsUrl;
     private final int comments;
     private final String htmlUrl;
@@ -34,14 +34,13 @@ public class Gist {
 
     public Gist(final String fullJson) {
         fullGistJson = fullJson;
+        user = "";
         final JSONObject gistObject = new JSONObject(fullJson);
         url = gistObject.getString("url");
         forksUrl = gistObject.getString("forks_url");
         commitsUrl = gistObject.getString("commits_url");
         id = gistObject.getString("id");
-        description = gistObject.get("description");
         isPublic = gistObject.getBoolean("public");
-        user = gistObject.get("user");
         commentsUrl = gistObject.getString("comments_url");
         comments = gistObject.getInt("comments");
         htmlUrl = gistObject.getString("html_url");
@@ -51,35 +50,34 @@ public class Gist {
         updatedAt = gistObject.getString("updated_at");
 
         try {
+            description = gistObject.getString("description");
+        } catch(JSONException noSuchDescription) {
+            description = "";
+        }
+
+        try {
             owner = new GistOwner(gistObject.getJSONObject("owner"));
         } catch(JSONException noSuchOwner) {
             owner = null;
         }
 
+        history = new HashSet<>();
+        forks = new HashSet<>();
         files = new HashMap<>();
+
         final JSONObject filesObject = gistObject.getJSONObject("files");
         for(final String key : filesObject.keySet())
             files.put(key,new GistFile(filesObject.getJSONObject(key)));
 
-        try {
-            JSONArray forksArray = gistObject.getJSONArray("forks");
-            forks = new HashSet<>();
-            for(int i=0;i<forksArray.length();i++)
-                forks.add(new GistFork(
-                        (JSONObject)forksArray.get(i)));
-        } catch(JSONException noSuchFork) {
-            forks = null;
-        }
+        JSONArray forksArray = gistObject.getJSONArray("forks");
+        for(int i=0;i<forksArray.length();i++)
+            forks.add(new GistFork(
+                    (JSONObject)forksArray.get(i)));
 
-        try {
-            JSONArray historyArray = gistObject.getJSONArray("history");
-            history = new HashSet<>();
-            for(int i=0;i<historyArray.length();i++)
-                history.add(new GistHistory(
-                        (JSONObject)historyArray.get(i)));
-        } catch(JSONException noSuchHistory) {
-            history = null;
-        }
+        JSONArray historyArray = gistObject.getJSONArray("history");
+        for(int i=0;i<historyArray.length();i++)
+            history.add(new GistHistory(
+                    (JSONObject)historyArray.get(i)));
     }
 
     @Override
@@ -115,7 +113,7 @@ public class Gist {
         return createdAt;
     }
 
-    public Object getDescription() {
+    public String getDescription() {
         return description;
     }
 
@@ -155,11 +153,11 @@ public class Gist {
         return htmlUrl;
     }
 
-    public Set<GistFork> getForks() {
-        return forks;
+    public GistFork[] getForks() {
+        return forks.toArray(new GistFork[forks.size()]);
     }
 
-    public Set<GistHistory> getHistory() {
-        return history;
+    public GistHistory[] getHistory() {
+        return history.toArray(new GistHistory[history.size()]);
     }
 }

@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class JaGist {
 
@@ -14,7 +15,8 @@ public class JaGist {
     }
 
     public static class GetGist {
-        public static Gist[] pub() throws JaGistException {
+        public static Gist[] pub()
+                throws JaGistException {
             final JSONArray gistsArray;
             final Set<Gist> gists = new HashSet<>();
             final String jsonStr;
@@ -47,8 +49,22 @@ public class JaGist {
             return null;
         }
 
-        public static Gist single(final String id) {
-            return null;
+        public static Gist single(final String id)
+                throws JaGistException {
+            final JSONObject obj;
+            String jsonStr;
+
+            try {
+                jsonStr = JaGistHttps.get("/"+id);
+            } catch(IOException ioe) {
+                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
+                        JaGistHttps.getLastCode());
+            }
+
+            if(jsonStr == null)
+                return null;
+
+            return new Gist(jsonStr);
         }
 
         public static Gist single(final String id, final String commitSha) {
