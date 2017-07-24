@@ -1,9 +1,8 @@
 package ssynx.gist;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.HashSet;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.Vector;
 import java.util.Map;
 import java.util.Set;
 
@@ -29,7 +28,7 @@ public class Gist {
     private final String gitPushUrl;
     private final String createdAt;
     private final String updatedAt;
-    private Set<GistHistory> history;
+    private Vector<GistHistory> history;
     private Set<GistFork> forks;
     private GistOwner owner;
     private final Map<String,GistFile> files;
@@ -63,9 +62,9 @@ public class Gist {
             owner = null;
         }
 
-        history = new TreeSet<>();
+        history = new Vector<>();
         forks = new HashSet<>();
-        files = new TreeMap<>();
+        files = new LinkedHashMap<>();
 
         final JSONObject filesObject = gistObject.getJSONObject("files");
         for(final String key : filesObject.keySet())
