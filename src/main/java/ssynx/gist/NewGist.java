@@ -2,8 +2,8 @@ package ssynx.gist;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.TreeMap;
 import java.util.Map;
+import java.util.LinkedHashMap;
 import java.io.InputStreamReader;
 import java.io.FileInputStream;
 import java.nio.charset.Charset;
@@ -14,7 +14,7 @@ public class NewGist {
 
     private final String desc;
     private final boolean isPublic;
-    private Map<String,String> files = new TreeMap<>();
+    private Map<String,String> files = new LinkedHashMap<>();
 
     private String readFile(File f) throws IOException {
         StringBuilder content = new StringBuilder();
