@@ -3,8 +3,7 @@ package ssynx.gist;
 import java.io.IOException;
 import java.net.Authenticator;
 import java.util.Calendar;
-import java.util.TreeSet;
-import java.util.Set;
+import java.util.Vector;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,7 +28,7 @@ public final class JaGist {
         public static Gist[] pub()
                 throws JaGistException {
             final JSONArray gistsArray;
-            final Set<Gist> gists = new TreeSet<>();
+            final Vector<Gist> gists = new Vector<>();
             final String jsonStr;
 
             try {
@@ -51,7 +50,7 @@ public final class JaGist {
         //FromDateTimestamp
         public static Gist[] pub(final String timestamp) throws JaGistException {
             final JSONArray gistsArray;
-            final Set<Gist> gists = new TreeSet<>();
+            final Vector<Gist> gists = new Vector<>();
             final String jsonStr;
 
             try {
