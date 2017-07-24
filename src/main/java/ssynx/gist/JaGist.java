@@ -2,16 +2,25 @@ package ssynx.gist;
 
 import java.io.IOException;
 import java.net.Authenticator;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class JaGist {
+public final class JaGist {
 
     public static void setAuthenticator(final JaGistAuthenticator auth) {
         Authenticator.setDefault(auth);
+    }
+
+    public static String dateToTimestamp(int y, int m, int d, int h, int mn, int s) {
+        return String.format("%04d-%02d-%02dT%02d:%02d:%02dZ",y,m,d,h,mn,s);
+    }
+
+    public static String dateToTimestamp(Calendar d) {
+        //todo
     }
 
     public static class GetGist {
@@ -37,8 +46,26 @@ public class JaGist {
             return gists.toArray(new Gist[gists.size()]);
         }
 
-        public static Gist pub(final String timestamp) {
-            return null;
+        //FromDateTimestamp
+        public static Gist[] pub(final String timestamp) throws JaGistException {
+            final JSONArray gistsArray;
+            final Set<Gist> gists = new HashSet<>();
+            final String jsonStr;
+
+            try {
+                jsonStr = JaGistHttps.get("?since="+timestamp);
+            } catch(IOException ioe) {
+                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
+                        JaGistHttps.getLastCode());
+            }
+
+            if(jsonStr != null) {
+                gistsArray = new JSONArray(jsonStr);
+                for (int i = 0; i < gistsArray.length(); i++)
+                    gists.add(new Gist(gistsArray.get(i).toString()));
+            }
+
+            return gists.toArray(new Gist[gists.size()]);
         }
 
         public static Gist[] user(final String user) {
