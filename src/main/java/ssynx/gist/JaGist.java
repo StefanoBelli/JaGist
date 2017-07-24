@@ -3,7 +3,7 @@ package ssynx.gist;
 import java.io.IOException;
 import java.net.Authenticator;
 import java.util.Calendar;
-import java.util.HashSet;
+import java.util.TreeSet;
 import java.util.Set;
 
 import org.json.JSONArray;
@@ -18,16 +18,18 @@ public final class JaGist {
     public static String dateToTimestamp(int y, int m, int d, int h, int mn, int s) {
         return String.format("%04d-%02d-%02dT%02d:%02d:%02dZ",y,m,d,h,mn,s);
     }
-
+    
+    /*
     public static String dateToTimestamp(Calendar d) {
         //todo
     }
+    */
 
     public static class GetGist {
         public static Gist[] pub()
                 throws JaGistException {
             final JSONArray gistsArray;
-            final Set<Gist> gists = new HashSet<>();
+            final Set<Gist> gists = new TreeSet<>();
             final String jsonStr;
 
             try {
@@ -49,7 +51,7 @@ public final class JaGist {
         //FromDateTimestamp
         public static Gist[] pub(final String timestamp) throws JaGistException {
             final JSONArray gistsArray;
-            final Set<Gist> gists = new HashSet<>();
+            final Set<Gist> gists = new TreeSet<>();
             final String jsonStr;
 
             try {
