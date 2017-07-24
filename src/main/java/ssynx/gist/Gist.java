@@ -2,6 +2,8 @@ package ssynx.gist;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -61,9 +63,9 @@ public class Gist {
             owner = null;
         }
 
-        history = new HashSet<>();
+        history = new TreeSet<>();
         forks = new HashSet<>();
-        files = new HashMap<>();
+        files = new TreeMap<>();
 
         final JSONObject filesObject = gistObject.getJSONObject("files");
         for(final String key : filesObject.keySet())
