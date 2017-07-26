@@ -60,9 +60,9 @@ class JaGistHttps {
         return res;
     }
 
-    static String get(final String operation)
+    static String get(final String getwhat, final String operation)
             throws IOException {
-        final URL target = new URL("https://api.github.com/gists"+operation);
+        final URL target = new URL("https://api.github.com"+getwhat+operation);
         final HttpsURLConnection connection = (HttpsURLConnection) target.openConnection();
 
         String res;
