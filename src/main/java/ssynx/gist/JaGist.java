@@ -8,6 +8,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public final class JaGist {
+
+    public static void setCredentials(final String username, final String passwd) {
+        JaGistHttps.setBasicAuth(username,passwd);
+    }
+
     public static String dateToTimestamp(int year, int month, int day, int hour, int minute, int second) {
         return String.format("%04d-%02d-%02dT%02d:%02d:%02dZ",
                 year,
@@ -176,16 +181,14 @@ public final class JaGist {
             return gists.toArray(new GistCommit[gists.size()]);
         }
 
-        public static boolean isStarred(final String id)
-                throws JaGistException {
+        public static boolean isStarred(final String id) {
             try {
                 JaGistHttps.get("/gists/" + id + "/star", "");
             } catch(IOException ioe) {
-                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
-                        JaGistHttps.getLastCode());
+                return false;
             }
 
-            return JaGistHttps.getLastCode() == 204;
+            return true;
         }
 
         public static Gist[] forks(final String id)

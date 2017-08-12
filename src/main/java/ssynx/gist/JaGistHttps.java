@@ -4,8 +4,10 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
+import java.util.Base64;
 
 class JaGistHttps {
+    private static String basicAuth = null;
     private static int lastCode = 0;
     private static String lastErrorMessage = "";
 
@@ -37,6 +39,11 @@ class JaGistHttps {
         }
     }
 
+    static void setBasicAuth(String username, String password) {
+        final byte[] all = (username+":"+password).getBytes();
+        basicAuth = "Basic "+Base64.getEncoder().encodeToString(all);
+    }
+
     static int getLastCode() {
         return lastCode;
     }
@@ -64,6 +71,8 @@ class JaGistHttps {
             throws IOException {
         final URL target = new URL("https://api.github.com"+getwhat+operation);
         final HttpsURLConnection connection = (HttpsURLConnection) target.openConnection();
+        if(basicAuth != null)
+            connection.setRequestProperty("Authorization",basicAuth);
 
         String res;
         try {
@@ -84,6 +93,8 @@ class JaGistHttps {
         connection.setDoInput(true);
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/json");
+        if(basicAuth != null)
+            connection.setRequestProperty("Authorization",basicAuth);
 
         final DataOutputStream requestBody = new DataOutputStream(connection.getOutputStream());
         requestBody.writeBytes(what);
