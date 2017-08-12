@@ -18,7 +18,6 @@ public class Gist {
     private final String forksUrl;
     private final String commitsUrl;
     private final String id;
-    private String description;
     private final boolean isPublic;
     private final String user;
     private final String commentsUrl;
@@ -28,18 +27,18 @@ public class Gist {
     private final String gitPushUrl;
     private final String createdAt;
     private final String updatedAt;
+    private final Map<String,GistFile> files;
+    private String description;
     private Vector<GistHistory> history;
     private Set<GistFork> forks;
     private GistOwner owner;
-    private final Map<String,GistFile> files;
 
-    public Gist(final String fullJson) {
+    Gist(final String fullJson) {
         fullGistJson = fullJson;
         user = "";
+
         final JSONObject gistObject = new JSONObject(fullJson);
         url = gistObject.getString("url");
-        forksUrl = gistObject.getString("forks_url");
-        commitsUrl = gistObject.getString("commits_url");
         id = gistObject.getString("id");
         isPublic = gistObject.getBoolean("public");
         commentsUrl = gistObject.getString("comments_url");
@@ -49,6 +48,8 @@ public class Gist {
         gitPushUrl = gistObject.getString("git_push_url");
         createdAt = gistObject.getString("created_at");
         updatedAt = gistObject.getString("updated_at");
+        forksUrl = gistObject.getString("forks_url");
+        commitsUrl = gistObject.getString("commits_url");
 
         try {
             description = gistObject.getString("description");
@@ -70,15 +71,23 @@ public class Gist {
         for(final String key : filesObject.keySet())
             files.put(key,new GistFile(filesObject.getJSONObject(key)));
 
-        JSONArray forksArray = gistObject.getJSONArray("forks");
-        for(int i=0;i<forksArray.length();i++)
-            forks.add(new GistFork(
-                    (JSONObject)forksArray.get(i)));
+        try {
+            JSONArray forksArray = gistObject.getJSONArray("forks");
+            for (int i = 0; i < forksArray.length(); i++)
+                forks.add(new GistFork(
+                        (JSONObject) forksArray.get(i)));
+        } catch(JSONException exc) {
+            //TODO
+        }
 
-        JSONArray historyArray = gistObject.getJSONArray("history");
-        for(int i=0;i<historyArray.length();i++)
-            history.add(new GistHistory(
-                    (JSONObject)historyArray.get(i)));
+        try {
+            JSONArray historyArray = gistObject.getJSONArray("history");
+            for (int i = 0; i < historyArray.length(); i++)
+                history.add(new GistHistory(
+                        (JSONObject) historyArray.get(i)));
+        } catch(JSONException exc) {
+            //TODO
+        }
     }
 
     @Override

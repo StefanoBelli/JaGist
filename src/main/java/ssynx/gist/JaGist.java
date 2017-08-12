@@ -1,7 +1,6 @@
 package ssynx.gist;
 
 import java.io.IOException;
-import java.net.Authenticator;
 import java.util.Calendar;
 import java.util.Vector;
 
@@ -9,11 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public final class JaGist {
-
-    public static void setAuthenticator(final JaGistAuthenticator auth) {
-        Authenticator.setDefault(auth);
-    }
-
     public static String dateToTimestamp(int year, int month, int day, int hour, int minute, int second) {
         return String.format("%04d-%02d-%02dT%02d:%02d:%02dZ",
                 year,
@@ -160,10 +154,10 @@ public final class JaGist {
             return new Gist(jsonStr);
         }
 
-        public static Gist[] singleCommits(final String id)
+        public static GistCommit[] singleCommits(final String id)
                 throws JaGistException {
             final JSONArray gistsArray;
-            final Vector<Gist> gists = new Vector<>();
+            final Vector<GistCommit> gists = new Vector<>();
             final String jsonStr;
 
             try {
@@ -176,10 +170,10 @@ public final class JaGist {
             if(jsonStr != null) {
                 gistsArray = new JSONArray(jsonStr);
                 for (int i = 0; i < gistsArray.length(); i++)
-                    gists.add(new Gist(gistsArray.get(i).toString()));
+                    gists.add(new GistCommit(gistsArray.get(i).toString()));
             }
 
-            return gists.toArray(new Gist[gists.size()]);
+            return gists.toArray(new GistCommit[gists.size()]);
         }
 
         public static boolean isStarred(final String id)
