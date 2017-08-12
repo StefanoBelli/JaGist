@@ -2,6 +2,9 @@ package ssynx.gist;
 
 import org.json.JSONObject;
 
+/*!
+ * @brief object representing gist change status
+ */
 public class GistChangeStatus {
 
     private final String jsonPiece;
@@ -10,7 +13,7 @@ public class GistChangeStatus {
     private final int additions;
     private final int total;
 
-    public GistChangeStatus(final JSONObject changeStatusObject) {
+    GistChangeStatus(final JSONObject changeStatusObject) {
         jsonPiece = changeStatusObject.toString();
         deletions = changeStatusObject.getInt("deletions");
         additions = changeStatusObject.getInt("additions");

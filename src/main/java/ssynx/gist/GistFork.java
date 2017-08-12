@@ -2,6 +2,9 @@ package ssynx.gist;
 
 import org.json.JSONObject;
 
+/*!
+ * @brief object representing a fork
+ */
 public class GistFork {
 
     private final String jsonPiece;
@@ -12,7 +15,7 @@ public class GistFork {
     private final String createdAt;
     private final String updatedAt;
 
-    public GistFork(final JSONObject forkObject) {
+    GistFork(final JSONObject forkObject) {
         jsonPiece = forkObject.toString();
 
         user = new GistOwner(forkObject.getJSONObject("user"));

@@ -2,6 +2,9 @@ package ssynx.gist;
 
 import org.json.JSONObject;
 
+/*!
+ * @brief object used to edit a gist
+ */
 public class EditGist {
 
     private final JSONObject editJson;
@@ -50,6 +53,10 @@ public class EditGist {
                 .put(whichFile,fileObject);
     }
 
+    /*!
+     * @brief use toString() method to get the json from your settings
+     * @return JSON-encoded settings for your edited gist
+     */
     @Override
     public String toString() {
         return editJson.toString();

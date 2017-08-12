@@ -2,6 +2,9 @@ package ssynx.gist;
 
 import org.json.JSONObject;
 
+/*!
+ * @brief Object representing Gist owner
+ */
 public class GistOwner {
 
     private final String jsonPiece;
@@ -24,7 +27,7 @@ public class GistOwner {
     private final String type;
     private final boolean siteAdmin;
 
-    public GistOwner(final JSONObject ownerObject) {
+    GistOwner(final JSONObject ownerObject) {
         jsonPiece = ownerObject.toString();
 
         login = ownerObject.getString("login");

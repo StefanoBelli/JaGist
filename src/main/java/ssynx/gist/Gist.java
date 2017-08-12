@@ -10,6 +10,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/*!
+ * @brief object representing a single gist
+ */
 public class Gist {
 
     private final String fullGistJson;

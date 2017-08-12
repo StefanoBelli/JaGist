@@ -7,6 +7,9 @@ import java.util.Vector;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+/*!
+ * @brief Main JaGist class
+ */
 public final class JaGist {
 
     public static void setCredentials(final String username, final String passwd) {
@@ -33,6 +36,9 @@ public final class JaGist {
                 c.get(Calendar.SECOND));
     }
 
+    /*!
+     * @brief Inner static class which contains Gist-information fetching methods
+     */
     public static class GetGist {
         public static Gist[] pub()
                 throws JaGistException {
@@ -159,10 +165,10 @@ public final class JaGist {
             return new Gist(jsonStr);
         }
 
-        public static GistCommit[] singleCommits(final String id)
+        public static GistHistory[] singleCommits(final String id)
                 throws JaGistException {
             final JSONArray gistsArray;
-            final Vector<GistCommit> gists = new Vector<>();
+            final Vector<GistHistory> gists = new Vector<>();
             final String jsonStr;
 
             try {
@@ -175,10 +181,10 @@ public final class JaGist {
             if(jsonStr != null) {
                 gistsArray = new JSONArray(jsonStr);
                 for (int i = 0; i < gistsArray.length(); i++)
-                    gists.add(new GistCommit(gistsArray.get(i).toString()));
+                    gists.add(new GistHistory(new JSONObject(gistsArray.get(i).toString())));
             }
 
-            return gists.toArray(new GistCommit[gists.size()]);
+            return gists.toArray(new GistHistory[gists.size()]);
         }
 
         public static boolean isStarred(final String id) {
@@ -214,6 +220,9 @@ public final class JaGist {
         }
     }
 
+    /*!
+     * @brief Inner static class which contains Gists information changing methods
+     */
     public static class PerformGist {
         public static Gist create(final NewGist gist) {
             return null;

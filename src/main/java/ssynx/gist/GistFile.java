@@ -4,6 +4,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.math.BigInteger;
 
+/*!
+ * @brief object representing a gist file
+ */
 public class GistFile {
 
     private final String jsonPiece;
@@ -14,7 +17,7 @@ public class GistFile {
     private boolean truncated;
     private final Object language;
 
-    public GistFile(final JSONObject fileObject) {
+    GistFile(final JSONObject fileObject) {
         jsonPiece = fileObject.toString();
 
         size = fileObject.getBigInteger("size");

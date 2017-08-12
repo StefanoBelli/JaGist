@@ -1,11 +1,14 @@
 package ssynx.gist;
 
+/*!
+ * @brief Generic JaGist Exception class
+ */
 public class JaGistException extends Exception {
 
     private final String strError;
     private final int codeError;
 
-    public JaGistException(final String strError, final int codeError) {
+    JaGistException(final String strError, final int codeError) {
         this.strError = strError;
         this.codeError = codeError;
     }

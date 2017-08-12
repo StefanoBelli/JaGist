@@ -10,6 +10,9 @@ import java.nio.charset.Charset;
 
 import org.json.JSONObject;
 
+/*!
+ * @brief Object representing new gist
+ */
 public class NewGist {
 
     private final String desc;
@@ -58,6 +61,10 @@ public class NewGist {
         files.put(file.getName(),readFile(file));
     }
 
+    /*!
+     * @brief use toString() method to get the json from your settings
+     * @return JSON-encoded settings for your new Gist
+     */
     @Override
     public String toString() {
         JSONObject gistobj = new JSONObject(),

@@ -2,6 +2,9 @@ package ssynx.gist;
 
 import org.json.JSONObject;
 
+/*!
+ * @brief object representing version of gist
+ */
 public class GistHistory {
 
     private final String jsonPiece;
@@ -9,15 +12,15 @@ public class GistHistory {
     private final String url;
     private final String version;
     private final GistOwner user;
-    private final String commitedAt;
+    private final String committedAt;
     private final GistChangeStatus changeStatus;
 
-    public GistHistory(final JSONObject historyObject) {
+    GistHistory(final JSONObject historyObject) {
         jsonPiece = historyObject.toString();
         url = historyObject.getString("url");
         version = historyObject.getString("version");
         user = new GistOwner(historyObject.getJSONObject("user"));
-        commitedAt = historyObject.getString("committed_at");
+        committedAt = historyObject.getString("committed_at");
         changeStatus = new GistChangeStatus(historyObject
                 .getJSONObject("change_status"));
     }
@@ -39,8 +42,8 @@ public class GistHistory {
         return changeStatus;
     }
 
-    public String getCommitedAt() {
-        return commitedAt;
+    public String getCommittedAt() {
+        return committedAt;
     }
 
     public String getVersion() {
