@@ -3,7 +3,7 @@ package ssynx.gist;
 import org.json.JSONObject;
 
 /*!
- * @brief object used to edit a gist
+ * @brief object used to edit a gist, refer to: JaGist.PerformGist.edit() method
  */
 public class EditGist {
 

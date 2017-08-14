@@ -273,8 +273,21 @@ public final class JaGist {
      * @brief Inner static class which contains Gists information changing methods
      */
     public static class PerformGist {
-        public static Gist create(final NewGist gist) {
-            return null;
+        @Nullable
+        public static Gist create(final NewGist gist)
+                throws JaGistException {
+            String newGist = null;
+            try {
+                newGist = JaGistHttps.post("",gist.toString());
+            } catch(IOException ioe) {
+                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
+                        JaGistHttps.getLastCode());
+            }
+
+            if(newGist == null)
+                return null;
+
+            return new Gist(newGist);
         }
 
         public static Gist edit(final EditGist gist) {

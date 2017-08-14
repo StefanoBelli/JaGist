@@ -12,6 +12,25 @@ class JaGistHttps {
     private static int lastCode = 0;
     private static String lastErrorMessage = "";
 
+    static String readFile(File f) throws IOException {
+        StringBuilder content = new StringBuilder();
+
+        FileInputStream ist = new FileInputStream(f);
+        InputStreamReader reader = new InputStreamReader(ist,
+                Charset.forName("UTF-8"));
+
+        try(BufferedReader buffer = new BufferedReader(reader)){
+            String line;
+            while((line = buffer.readLine()) != null)
+                content.append(line).append('\n');
+        } finally {
+            ist.close();
+            reader.close();
+        }
+
+        return content.toString();
+    }
+
     @Nullable
     private static String getResponse(final InputStream stream) {
         StringBuilder full = new StringBuilder();
@@ -91,7 +110,7 @@ class JaGistHttps {
     @Nullable
     static String post(final String operation, final String what)
             throws IOException {
-        final URL target = new URL("https://api.github.com/gists/" + operation);
+        final URL target = new URL("https://api.github.com/gists" + operation);
         final HttpsURLConnection connection = (HttpsURLConnection) target.openConnection();
 
         connection.setDoOutput(true);

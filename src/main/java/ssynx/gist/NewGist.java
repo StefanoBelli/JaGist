@@ -1,48 +1,29 @@
 package ssynx.gist;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.Map;
 import java.util.LinkedHashMap;
-import java.io.InputStreamReader;
-import java.io.FileInputStream;
-import java.nio.charset.Charset;
 
 import org.json.JSONObject;
 
 /*!
- * @brief Object representing new gist
+ * @brief Object representing new gist, refer to: JaGist.PerformGist.create() method
  */
 public class NewGist {
 
     private final String desc;
     private final boolean isPublic;
-    private Map<String,String> files = new LinkedHashMap<>();
-
-    private String readFile(File f) throws IOException {
-        StringBuilder content = new StringBuilder();
-
-        InputStreamReader reader;
-        reader = new InputStreamReader(new FileInputStream(f),
-                        Charset.forName("UTF-8"));
-
-        char[] bytes = new char[1024];
-
-        try {
-            while (reader.read(bytes) != -1)
-                content.append(new String(bytes));
-        } finally {
-            reader.close();
-        }
-
-        return content.toString();
-    }
+    private Map<String,JSONObject> files = new LinkedHashMap<>();
 
     public NewGist(final String description, final boolean isPublic,
                    final String filename, final String content) {
         desc = description;
         this.isPublic = isPublic;
-        files.put(filename, content);
+
+        final JSONObject fileobj = new JSONObject();
+        fileobj.put("content",content);
+
+        files.put(filename, fileobj);
     }
 
     public NewGist(final String description, final boolean isPublic,
@@ -50,15 +31,25 @@ public class NewGist {
             throws IOException {
         desc = description;
         this.isPublic = isPublic;
-        files.put(file.getName(),readFile(file));
+
+        final JSONObject fileobj = new JSONObject();
+        fileobj.put("content",JaGistHttps.readFile(file));
+
+        files.put(file.getName(),fileobj);
     }
 
     public void addFile(final String filename, final String content) {
-        files.put(filename,content);
+        final JSONObject fileobj = new JSONObject();
+        fileobj.put("content",content);
+
+        files.put(filename,fileobj);
     }
 
     public void addFile(final File file) throws IOException {
-        files.put(file.getName(),readFile(file));
+        final JSONObject fileobj = new JSONObject();
+        fileobj.put("content",JaGistHttps.readFile(file));
+
+        files.put(file.getName(),fileobj);
     }
 
     /*!
@@ -73,7 +64,7 @@ public class NewGist {
         gistobj.put("public",isPublic);
         gistobj.put("description",desc);
 
-        for(Map.Entry<String,String> entry : files.entrySet())
+        for(final Map.Entry<String,JSONObject> entry : files.entrySet())
             fileobj.put(entry.getKey(),entry.getValue());
 
         gistobj.put("files",fileobj);
