@@ -5,12 +5,14 @@ import java.nio.charset.Charset;
 import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 import java.util.Base64;
+import javax.annotation.Nullable;
 
 class JaGistHttps {
     private static String basicAuth = null;
     private static int lastCode = 0;
     private static String lastErrorMessage = "";
 
+    @Nullable
     private static String getResponse(final InputStream stream) {
         StringBuilder full = new StringBuilder();
         String line;
@@ -52,6 +54,7 @@ class JaGistHttps {
         return lastErrorMessage;
     }
 
+    @Nullable
     static String get()
             throws IOException {
         final URL target = new URL("https://api.github.com/gists");
@@ -67,6 +70,7 @@ class JaGistHttps {
         return res;
     }
 
+    @Nullable
     static String get(final String getwhat, final String operation)
             throws IOException {
         final URL target = new URL("https://api.github.com"+getwhat+operation);
@@ -84,6 +88,7 @@ class JaGistHttps {
         return res;
     }
 
+    @Nullable
     static String post(final String operation, final String what)
             throws IOException {
         final URL target = new URL("https://api.github.com/gists/" + operation);

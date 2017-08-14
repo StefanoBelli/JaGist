@@ -1,6 +1,8 @@
 package ssynx.gist;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+import javax.annotation.Nullable;
 
 /*!
  * @brief object representing version of gist
@@ -9,9 +11,9 @@ public class GistHistory {
 
     private final String jsonPiece;
 
+    private GistOwner user;
     private final String url;
     private final String version;
-    private final GistOwner user;
     private final String committedAt;
     private final GistChangeStatus changeStatus;
 
@@ -19,10 +21,15 @@ public class GistHistory {
         jsonPiece = historyObject.toString();
         url = historyObject.getString("url");
         version = historyObject.getString("version");
-        user = new GistOwner(historyObject.getJSONObject("user"));
         committedAt = historyObject.getString("committed_at");
         changeStatus = new GistChangeStatus(historyObject
                 .getJSONObject("change_status"));
+
+        try {
+            user = new GistOwner(historyObject.getJSONObject("user"));
+        } catch(JSONException noSuchUser) {
+            user = null;
+        }
     }
 
     @Override
@@ -34,6 +41,7 @@ public class GistHistory {
         return url;
     }
 
+    @Nullable
     public GistOwner getUser() {
         return user;
     }

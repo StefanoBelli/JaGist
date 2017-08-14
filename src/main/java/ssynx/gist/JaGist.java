@@ -7,15 +7,32 @@ import java.util.Vector;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import javax.annotation.Nullable;
+
 /*!
  * @brief Main JaGist class
  */
 public final class JaGist {
 
+    /*!
+     * @brief HTTP requests will contain basic authentication headers
+     * @param username : username
+     * @param passwd   : password
+     */
     public static void setCredentials(final String username, final String passwd) {
         JaGistHttps.setBasicAuth(username,passwd);
     }
 
+    /*!
+     * @brief This method overload returns a timestamp in ISO 8601 by each date parameter
+     * @param year
+     * @param month
+     * @param day
+     * @param hour
+     * @param minute
+     * @param second
+     * @return A timestamp in ISO 8601 format
+     */
     public static String dateToTimestamp(int year, int month, int day, int hour, int minute, int second) {
         return String.format("%04d-%02d-%02dT%02d:%02d:%02dZ",
                 year,
@@ -26,6 +43,11 @@ public final class JaGist {
                 second);
     }
 
+    /*!
+     * @brief This method overload returns a timestamp in ISO 8601 by a Calendar object
+     * @param c : Calendar object
+     * @return A timestamp in ISO 8601 format
+     */
     public static String dateToTimestamp(Calendar c) {
         return String.format("%04d-%02d-%02dT%02d:%02d:%02dZ",
                 c.get(Calendar.YEAR),
@@ -40,17 +62,20 @@ public final class JaGist {
      * @brief Inner static class which contains Gist-information fetching methods
      */
     public static class GetGist {
+
         public static Gist[] pub()
                 throws JaGistException {
             final JSONArray gistsArray;
             final Vector<Gist> gists = new Vector<>();
-            final String jsonStr;
+            String jsonStr = null;
 
             try {
                 jsonStr = JaGistHttps.get();
             } catch(IOException ioe) {
-                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
-                        JaGistHttps.getLastCode());
+                int code = JaGistHttps.getLastCode();
+                if(code != 404)
+                    throw new JaGistException(JaGistHttps.getLastErrorMessage(),
+                            code);
             }
 
             if(jsonStr != null) {
@@ -62,18 +87,22 @@ public final class JaGist {
             return gists.toArray(new Gist[gists.size()]);
         }
 
-        //FromDateTimestamp
+        /*!
+         * @brief check JaGist.dateToTimestamp() method
+         */
         public static Gist[] pub(final String timestamp)
                 throws JaGistException {
             final JSONArray gistsArray;
             final Vector<Gist> gists = new Vector<>();
-            final String jsonStr;
+            String jsonStr = null;
 
             try {
                 jsonStr = JaGistHttps.get("/gists","?since="+timestamp);
             } catch(IOException ioe) {
-                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
-                        JaGistHttps.getLastCode());
+                int code = JaGistHttps.getLastCode();
+                if(code != 404)
+                    throw new JaGistException(JaGistHttps.getLastErrorMessage(),
+                            code);
             }
 
             if(jsonStr != null) {
@@ -89,13 +118,15 @@ public final class JaGist {
                 throws JaGistException {
             final JSONArray gistsArray;
             final Vector<Gist> gists = new Vector<>();
-            final String jsonStr;
+            String jsonStr = null;
 
             try {
                 jsonStr = JaGistHttps.get("/users/"+user+"/gists","");
             } catch(IOException ioe) {
-                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
-                        JaGistHttps.getLastCode());
+                int code = JaGistHttps.getLastCode();
+                if(code != 404)
+                    throw new JaGistException(JaGistHttps.getLastErrorMessage(),
+                            code);
             }
 
             if(jsonStr != null) {
@@ -111,13 +142,15 @@ public final class JaGist {
                 throws JaGistException {
             final JSONArray gistsArray;
             final Vector<Gist> gists = new Vector<>();
-            final String jsonStr;
+            String jsonStr = null;
 
             try {
                 jsonStr = JaGistHttps.get("/gists/starred","");
             } catch(IOException ioe) {
-                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
-                        JaGistHttps.getLastCode());
+                int code = JaGistHttps.getLastCode();
+                if(code != 404)
+                    throw new JaGistException(JaGistHttps.getLastErrorMessage(),
+                            code);
             }
 
             if(jsonStr != null) {
@@ -129,16 +162,19 @@ public final class JaGist {
             return gists.toArray(new Gist[gists.size()]);
         }
 
+        @Nullable
         public static Gist single(final String id)
                 throws JaGistException {
             final JSONObject obj;
-            String jsonStr;
+            String jsonStr = null;
 
             try {
                 jsonStr = JaGistHttps.get("/gists/"+id,"");
             } catch(IOException ioe) {
-                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
-                        JaGistHttps.getLastCode());
+                int code = JaGistHttps.getLastCode();
+                if(code != 404)
+                    throw new JaGistException(JaGistHttps.getLastErrorMessage(),
+                            code);
             }
 
             if(jsonStr == null)
@@ -147,16 +183,19 @@ public final class JaGist {
             return new Gist(jsonStr);
         }
 
+        @Nullable
         public static Gist single(final String id, final String commitSha)
                 throws JaGistException {
             final JSONObject obj;
-            String jsonStr;
+            String jsonStr = null;
 
             try {
                 jsonStr = JaGistHttps.get("/gists/"+id+"/"+commitSha,"");
             } catch(IOException ioe) {
-                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
-                        JaGistHttps.getLastCode());
+                int code = JaGistHttps.getLastCode();
+                if(code != 404)
+                    throw new JaGistException(JaGistHttps.getLastErrorMessage(),
+                            code);
             }
 
             if(jsonStr == null)
@@ -169,13 +208,15 @@ public final class JaGist {
                 throws JaGistException {
             final JSONArray gistsArray;
             final Vector<GistHistory> gists = new Vector<>();
-            final String jsonStr;
+            String jsonStr = null;
 
             try {
                 jsonStr = JaGistHttps.get("/gists/"+id+"/commits","");
             } catch(IOException ioe) {
-                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
-                        JaGistHttps.getLastCode());
+                int code = JaGistHttps.getLastCode();
+                if(code != 404)
+                    throw new JaGistException(JaGistHttps.getLastErrorMessage(),
+                            code);
             }
 
             if(jsonStr != null) {
@@ -187,11 +228,17 @@ public final class JaGist {
             return gists.toArray(new GistHistory[gists.size()]);
         }
 
-        public static boolean isStarred(final String id) {
+        public static boolean isStarred(final String id)
+                throws JaGistException {
             try {
                 JaGistHttps.get("/gists/" + id + "/star", "");
             } catch(IOException ioe) {
-                return false;
+                int code = JaGistHttps.getLastCode();
+                if(code == 404)
+                    return false;
+
+                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
+                        code);
             }
 
             return true;
@@ -201,13 +248,15 @@ public final class JaGist {
                 throws JaGistException {
             final JSONArray gistsArray;
             final Vector<Gist> gists = new Vector<>();
-            final String jsonStr;
+            String jsonStr = null;
 
             try {
                 jsonStr = JaGistHttps.get("/gists/"+id+"/forks","");
             } catch(IOException ioe) {
-                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
-                        JaGistHttps.getLastCode());
+                int code = JaGistHttps.getLastCode();
+                if(code != 404)
+                    throw new JaGistException(JaGistHttps.getLastErrorMessage(),
+                            code);
             }
 
             if(jsonStr != null) {

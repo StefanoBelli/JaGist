@@ -10,6 +10,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import javax.annotation.Nullable;
+
 /*!
  * @brief object representing a single gist
  */
@@ -57,7 +59,7 @@ public class Gist {
         try {
             description = gistObject.getString("description");
         } catch(JSONException noSuchDescription) {
-            description = "";
+            description = null;
         }
 
         try {
@@ -102,6 +104,7 @@ public class Gist {
         return url;
     }
 
+    @Nullable
     public GistOwner getOwner() {
         return owner;
     }
@@ -126,6 +129,7 @@ public class Gist {
         return createdAt;
     }
 
+    @Nullable
     public String getDescription() {
         return description;
     }
