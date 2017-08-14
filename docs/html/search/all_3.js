@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['jagist',['JaGist',['../classssynx_1_1gist_1_1JaGist.html',1,'ssynx::gist']]],
-  ['jagistexception',['JaGistException',['../classssynx_1_1gist_1_1JaGistException.html',1,'ssynx::gist']]]
+  ['forks',['forks',['../classssynx_1_1gist_1_1JaGist_1_1GetGist.html#a824b9bea5cf4bbce321166d2fef13c95',1,'ssynx::gist::JaGist::GetGist']]]
 ];

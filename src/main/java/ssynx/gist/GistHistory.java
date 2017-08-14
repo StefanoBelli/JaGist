@@ -5,7 +5,7 @@ import org.json.JSONObject;
 import javax.annotation.Nullable;
 
 /*!
- * @brief object representing version of gist
+ * @brief object representing version of gist (methods are self-explaining)
  */
 public class GistHistory {
 

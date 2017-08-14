@@ -3,7 +3,7 @@ package ssynx.gist;
 import org.json.JSONObject;
 
 /*!
- * @brief Object representing Gist owner
+ * @brief Object representing Gist owner (methods are self-explaining)
  */
 public class GistOwner {
 

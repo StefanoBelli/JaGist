@@ -5,7 +5,7 @@ import org.json.JSONObject;
 import java.math.BigInteger;
 
 /*!
- * @brief object representing a gist file
+ * @brief object representing a gist file (methods are self-explaining)
  */
 public class GistFile {
 

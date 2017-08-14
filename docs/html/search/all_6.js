@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['setcredentials',['setCredentials',['../classssynx_1_1gist_1_1JaGist.html#ada0099771e58e6dbc7c030a6ccf445d7',1,'ssynx::gist::JaGist']]]
+  ['jagist',['JaGist',['../classssynx_1_1gist_1_1JaGist.html',1,'ssynx::gist']]],
+  ['jagistexception',['JaGistException',['../classssynx_1_1gist_1_1JaGistException.html',1,'ssynx::gist']]]
 ];

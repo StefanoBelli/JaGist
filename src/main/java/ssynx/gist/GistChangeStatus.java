@@ -3,7 +3,7 @@ package ssynx.gist;
 import org.json.JSONObject;
 
 /*!
- * @brief object representing gist change status
+ * @brief object representing gist change status (methods are self-explaining)
  */
 public class GistChangeStatus {
 

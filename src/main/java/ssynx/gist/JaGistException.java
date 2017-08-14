@@ -13,10 +13,18 @@ public class JaGistException extends Exception {
         this.codeError = codeError;
     }
 
+    /*!
+     * @brief Use getCodeError() to see what's wrong
+     * @return HTTP error code
+     */
     public int getCodeError() {
         return codeError;
     }
 
+    /*!
+     * @brief Use getStrError() to see what's wrong
+     * @return HTTP Status Text
+     */
     public String getStrError() {
         return strError;
     }

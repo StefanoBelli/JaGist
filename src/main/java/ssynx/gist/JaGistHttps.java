@@ -134,7 +134,34 @@ class JaGistHttps {
         return res;
     }
 
+    @Nullable
+    static String patch(final String operation, final String what)
+            throws IOException {
+        final URL target = new URL("https://api.github.com/gists" + operation);
+        final HttpsURLConnection connection = (HttpsURLConnection) target.openConnection();
+
+        connection.setDoOutput(true);
+        connection.setDoInput(true);
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setRequestProperty("X-HTTP-Method-Override", "PATCH");
+        if (basicAuth != null)
+            connection.setRequestProperty("Authorization", basicAuth);
+
+        final DataOutputStream requestBody = new DataOutputStream(connection.getOutputStream());
+        requestBody.writeBytes(what);
+        requestBody.close();
+
+        String res;
+        try {
+            res = getResponse(connection.getInputStream());
+        } finally {
+            assignLast(connection);
+        }
+
+        return res;
+    }
+
     //delete
     //put
-    //patch
 }

@@ -63,6 +63,10 @@ public final class JaGist {
      */
     public static class GetGist {
 
+        /*!
+         * @brief get me EEVERYTHINGGGG
+         * @return public gists
+         */
         public static Gist[] pub()
                 throws JaGistException {
             final JSONArray gistsArray;
@@ -89,6 +93,8 @@ public final class JaGist {
 
         /*!
          * @brief check JaGist.dateToTimestamp() method
+         * @param timestamp : ISO-8601 timetamp
+         * @return Gists from that date to now
          */
         public static Gist[] pub(final String timestamp)
                 throws JaGistException {
@@ -114,6 +120,11 @@ public final class JaGist {
             return gists.toArray(new Gist[gists.size()]);
         }
 
+        /*!
+         * @brief get every gist from 'user'
+         * @param user : username
+         * @return user's gists
+         */
         public static Gist[] user(final String user)
                 throws JaGistException {
             final JSONArray gistsArray;
@@ -138,6 +149,11 @@ public final class JaGist {
             return gists.toArray(new Gist[gists.size()]);
         }
 
+        /*!
+         * @brief get YOUR starred gists (check setCredentials() method)
+         * [REQUIRES AUTHENTICATION]
+         * @return your starred gists
+         */
         public static Gist[] starred()
                 throws JaGistException {
             final JSONArray gistsArray;
@@ -162,6 +178,11 @@ public final class JaGist {
             return gists.toArray(new Gist[gists.size()]);
         }
 
+        /*!
+         * @brief retrieves single gist by its id
+         * @param id : gist's id
+         * @return requested gist ( WARNING: MAY BE NULL! )
+         */
         @Nullable
         public static Gist single(final String id)
                 throws JaGistException {
@@ -183,6 +204,12 @@ public final class JaGist {
             return new Gist(jsonStr);
         }
 
+        /*!
+         * @brief retrieves single gist by its id, with specific revision
+         * @param id : gist's id
+         * @param commitSha : gist specific revision commit SHA
+         * @return requested gist by commit ( WARNING: MAY BE NULL! )
+         */
         @Nullable
         public static Gist single(final String id, final String commitSha)
                 throws JaGistException {
@@ -204,6 +231,11 @@ public final class JaGist {
             return new Gist(jsonStr);
         }
 
+        /*!
+         * @brief Retrieves all commits for Gist's ID
+         * @param id : gist ID
+         * @return all of its commits
+         */
         public static GistHistory[] singleCommits(final String id)
                 throws JaGistException {
             final JSONArray gistsArray;
@@ -228,6 +260,11 @@ public final class JaGist {
             return gists.toArray(new GistHistory[gists.size()]);
         }
 
+        /*!
+         * @brief checks if you starred a gist by its id (check setCredentials() method)
+         * [REQUIRES AUTHENTICATION]
+         * @return did you starred that gist?
+         */
         public static boolean isStarred(final String id)
                 throws JaGistException {
             try {
@@ -244,6 +281,11 @@ public final class JaGist {
             return true;
         }
 
+        /*!
+         * @brief specific-gist forks
+         * @param id : gist's id
+         * @return Gist forks
+         */
         public static Gist[] forks(final String id)
                 throws JaGistException {
             final JSONArray gistsArray;
@@ -276,7 +318,7 @@ public final class JaGist {
         @Nullable
         public static Gist create(final NewGist gist)
                 throws JaGistException {
-            String newGist = null;
+            String newGist;
             try {
                 newGist = JaGistHttps.post("",gist.toString());
             } catch(IOException ioe) {
@@ -284,14 +326,27 @@ public final class JaGist {
                         JaGistHttps.getLastCode());
             }
 
-            if(newGist == null)
+            if(newGist == null) //this code may never be reached...
                 return null;
 
             return new Gist(newGist);
         }
 
-        public static Gist edit(final EditGist gist) {
-            return null;
+        @Nullable
+        public static Gist edit(final EditGist gist,final String id)
+                throws JaGistException {
+            String newGist;
+            try {
+                newGist = JaGistHttps.patch("/"+id,gist.toString());
+            } catch(IOException ioe) {
+                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
+                        JaGistHttps.getLastCode());
+            }
+
+            if(newGist == null) //this code may never be reached
+                return null;
+
+            return new Gist(newGist);
         }
 
         public static boolean star(final String id) {

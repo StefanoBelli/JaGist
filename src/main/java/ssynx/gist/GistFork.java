@@ -3,7 +3,7 @@ package ssynx.gist;
 import org.json.JSONObject;
 
 /*!
- * @brief object representing a fork
+ * @brief object representing a fork (methods are self-explaining)
  */
 public class GistFork {
 

@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import javax.annotation.Nullable;
 
 /*!
- * @brief object representing a single gist
+ * @brief object representing a single gist (methods are self-explaining)
  */
 public class Gist {
 
