@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pub',['pub',['../classssynx_1_1gist_1_1JaGist_1_1GetGist.html#a44db58ae36060440261738c837123d26',1,'ssynx::gist::JaGist::GetGist']]]
+  ['datetotimestamp',['dateToTimestamp',['../classssynx_1_1gist_1_1JaGist.html#afaf72927c7d0f8765873d71c82d2aeec',1,'ssynx.gist.JaGist.dateToTimestamp(int year, int month, int day, int hour, int minute, int second)'],['../classssynx_1_1gist_1_1JaGist.html#a85c18420debe300f48f835bad0697486',1,'ssynx.gist.JaGist.dateToTimestamp(Calendar c)']]]
 ];

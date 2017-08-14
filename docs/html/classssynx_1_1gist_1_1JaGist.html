@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">JaGist
-   &#160;<span id="projectnumber">0.1.2</span>
+   &#160;<span id="projectnumber">0.1.3</span>
    </div>
    <div id="projectbrief">Fast and easy GitHub Gist API implementation</div>
   </td>
@@ -87,19 +87,174 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ada0099771e58e6dbc7c030a6ccf445d7"><td class="memItemLeft" align="right" valign="top"><a id="ada0099771e58e6dbc7c030a6ccf445d7"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>setCredentials</b> (final String username, final String passwd)</td></tr>
+<tr class="memitem:ada0099771e58e6dbc7c030a6ccf445d7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classssynx_1_1gist_1_1JaGist.html#ada0099771e58e6dbc7c030a6ccf445d7">setCredentials</a> (final String username, final String passwd)</td></tr>
+<tr class="memdesc:ada0099771e58e6dbc7c030a6ccf445d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">HTTP requests will contain basic authentication headers.  <a href="#ada0099771e58e6dbc7c030a6ccf445d7">More...</a><br /></td></tr>
 <tr class="separator:ada0099771e58e6dbc7c030a6ccf445d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afaf72927c7d0f8765873d71c82d2aeec"><td class="memItemLeft" align="right" valign="top"><a id="afaf72927c7d0f8765873d71c82d2aeec"></a>
-static String&#160;</td><td class="memItemRight" valign="bottom"><b>dateToTimestamp</b> (int year, int month, int day, int hour, int minute, int second)</td></tr>
+<tr class="memitem:afaf72927c7d0f8765873d71c82d2aeec"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classssynx_1_1gist_1_1JaGist.html#afaf72927c7d0f8765873d71c82d2aeec">dateToTimestamp</a> (int year, int month, int day, int hour, int minute, int second)</td></tr>
+<tr class="memdesc:afaf72927c7d0f8765873d71c82d2aeec"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method overload returns a timestamp in ISO 8601 by each date parameter.  <a href="#afaf72927c7d0f8765873d71c82d2aeec">More...</a><br /></td></tr>
 <tr class="separator:afaf72927c7d0f8765873d71c82d2aeec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85c18420debe300f48f835bad0697486"><td class="memItemLeft" align="right" valign="top"><a id="a85c18420debe300f48f835bad0697486"></a>
-static String&#160;</td><td class="memItemRight" valign="bottom"><b>dateToTimestamp</b> (Calendar c)</td></tr>
+<tr class="memitem:a85c18420debe300f48f835bad0697486"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classssynx_1_1gist_1_1JaGist.html#a85c18420debe300f48f835bad0697486">dateToTimestamp</a> (Calendar c)</td></tr>
+<tr class="memdesc:a85c18420debe300f48f835bad0697486"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method overload returns a timestamp in ISO 8601 by a Calendar object.  <a href="#a85c18420debe300f48f835bad0697486">More...</a><br /></td></tr>
 <tr class="separator:a85c18420debe300f48f835bad0697486"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main <a class="el" href="classssynx_1_1gist_1_1JaGist.html" title="Main JaGist class. ">JaGist</a> class. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="afaf72927c7d0f8765873d71c82d2aeec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afaf72927c7d0f8765873d71c82d2aeec">&#9670;&nbsp;</a></span>dateToTimestamp() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static String ssynx.gist.JaGist.dateToTimestamp </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>year</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>month</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>day</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minute</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>second</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This method overload returns a timestamp in ISO 8601 by each date parameter. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">year</td><td></td></tr>
+    <tr><td class="paramname">month</td><td></td></tr>
+    <tr><td class="paramname">day</td><td></td></tr>
+    <tr><td class="paramname">hour</td><td></td></tr>
+    <tr><td class="paramname">minute</td><td></td></tr>
+    <tr><td class="paramname">second</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A timestamp in ISO 8601 format </dd></dl>
+
+</div>
+</div>
+<a id="a85c18420debe300f48f835bad0697486"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85c18420debe300f48f835bad0697486">&#9670;&nbsp;</a></span>dateToTimestamp() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static String ssynx.gist.JaGist.dateToTimestamp </td>
+          <td>(</td>
+          <td class="paramtype">Calendar&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This method overload returns a timestamp in ISO 8601 by a Calendar object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>: Calendar object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A timestamp in ISO 8601 format </dd></dl>
+
+</div>
+</div>
+<a id="ada0099771e58e6dbc7c030a6ccf445d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada0099771e58e6dbc7c030a6ccf445d7">&#9670;&nbsp;</a></span>setCredentials()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void ssynx.gist.JaGist.setCredentials </td>
+          <td>(</td>
+          <td class="paramtype">final String&#160;</td>
+          <td class="paramname"><em>username</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">final String&#160;</td>
+          <td class="paramname"><em>passwd</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>HTTP requests will contain basic authentication headers. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">username</td><td>: username </td></tr>
+    <tr><td class="paramname">passwd</td><td>: password </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/main/java/ssynx/gist/JaGist.java</li>
 </ul>
 </div><!-- contents -->
