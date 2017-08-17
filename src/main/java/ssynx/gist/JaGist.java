@@ -59,6 +59,22 @@ public final class JaGist {
     }
 
     /*!
+     * @brief This method let you get the last HTTP error code by request
+     * @return HTTP integer error code
+     */
+    public static int getRequestCode() {
+        return JaGistHttps.getLastCode();
+    }
+
+    /*!
+     * @brief This method let you get the last HTTP error string by request
+     * @return HTTP message string
+     */
+    public static String getRequestString() {
+        return JaGistHttps.getLastErrorMessage();
+    }
+
+    /*!
      * @brief Inner static class which contains Gist-information fetching methods
      */
     public static class GetGist {
@@ -315,6 +331,12 @@ public final class JaGist {
      * @brief Inner static class which contains Gists information changing methods
      */
     public static class PerformGist {
+
+        /*!
+         * @brief Create new Gist
+         * @param gist : your new gist (refer to NewGist class)
+         * @return new Gist by response (may return null)
+         */
         @Nullable
         public static Gist create(final NewGist gist)
                 throws JaGistException {
@@ -322,6 +344,10 @@ public final class JaGist {
             try {
                 newGist = JaGistHttps.post("",gist.toString());
             } catch(IOException ioe) {
+                int code = JaGistHttps.getLastCode();
+                if(code == 404)
+                    return null;
+
                 throw new JaGistException(JaGistHttps.getLastErrorMessage(),
                         JaGistHttps.getLastCode());
             }
@@ -332,6 +358,12 @@ public final class JaGist {
             return new Gist(newGist);
         }
 
+        /*!
+         * @brief Edit a gist
+         * @param gist : your edited gist (refer to EditGist class)
+         * @param id : your target gist ID
+         * @return new edited gist by response (may return null)
+         */
         @Nullable
         public static Gist edit(final EditGist gist,final String id)
                 throws JaGistException {
@@ -339,6 +371,10 @@ public final class JaGist {
             try {
                 newGist = JaGistHttps.patch("/"+id,gist.toString());
             } catch(IOException ioe) {
+                int code = JaGistHttps.getLastCode();
+                if(code == 404)
+                    return null;
+
                 throw new JaGistException(JaGistHttps.getLastErrorMessage(),
                         JaGistHttps.getLastCode());
             }
@@ -349,6 +385,11 @@ public final class JaGist {
             return new Gist(newGist);
         }
 
+        /*!
+         * @brief Star a gist (requires authentication, see JaGist's setCredentials() method)
+         * @param id: your gist's ID
+         * @return true if correctly starred, false otherwise
+         */
         public static boolean star(final String id)
                 throws JaGistException {
             try {
@@ -365,6 +406,11 @@ public final class JaGist {
             return true;
         }
 
+        /*!
+         * @brief Unstar a gist (requires authentication, see JaGist's setCredentials() method)
+         * @param id: your gist's ID
+         * @return true if correctly unstarred, false otherwise
+         */
         public static boolean unstar(final String id)
                 throws JaGistException {
             try {
@@ -381,6 +427,11 @@ public final class JaGist {
             return true;
         }
 
+        /*!
+         * @brief fork a gist (requires authentication)
+         * @param id : your gist id
+         * @return new Gist by response (may return null)
+         */
         @Nullable
         public static Gist fork(final String id)
                 throws JaGistException {
@@ -403,6 +454,11 @@ public final class JaGist {
             return new Gist(strFork);
         }
 
+        /*!
+         * @brief Delete a gist (requires authentication, see JaGist's setCredentials() method)
+         * @param id: your gist's ID
+         * @return true if correctly deleted, false otherwise
+         */
         public static boolean delete(final String id)
                 throws JaGistException {
             try {
