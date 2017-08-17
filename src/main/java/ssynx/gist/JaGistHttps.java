@@ -162,6 +162,36 @@ class JaGistHttps {
         return res;
     }
 
-    //delete
-    //put
+    static void delete(final String operation)
+            throws IOException {
+        final URL target = new URL("https://api.github.com/gists" + operation);
+        final HttpsURLConnection connection = (HttpsURLConnection) target.openConnection();
+
+        connection.setRequestMethod("DELETE");
+        if (basicAuth != null)
+            connection.setRequestProperty("Authorization", basicAuth);
+
+        try {
+            getResponse(connection.getInputStream());
+        } finally {
+            assignLast(connection);
+        }
+    }
+
+    static void put(final String operation)
+            throws IOException {
+        final URL target = new URL("https://api.github.com/gists" + operation);
+        final HttpsURLConnection connection = (HttpsURLConnection) target.openConnection();
+
+        connection.setRequestMethod("PUT");
+        connection.setRequestProperty("Content-Length","0");
+        if (basicAuth != null)
+            connection.setRequestProperty("Authorization", basicAuth);
+
+        try {
+            getResponse(connection.getInputStream());
+        } finally {
+            assignLast(connection);
+        }
+    }
 }

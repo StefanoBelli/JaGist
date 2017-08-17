@@ -349,20 +349,74 @@ public final class JaGist {
             return new Gist(newGist);
         }
 
-        public static boolean star(final String id) {
-            return false;
+        public static boolean star(final String id)
+                throws JaGistException {
+            try {
+                JaGistHttps.put("/"+id+"/star");
+            } catch(IOException ioe) {
+                int code = JaGistHttps.getLastCode();
+                if(code == 404)
+                    return false;
+
+                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
+                        code);
+            }
+
+            return true;
         }
 
-        public static boolean unstar(final String id) {
-            return false;
+        public static boolean unstar(final String id)
+                throws JaGistException {
+            try {
+                JaGistHttps.delete("/"+id+"/star");
+            } catch(IOException ioe) {
+                int code = JaGistHttps.getLastCode();
+                if(code == 404)
+                    return false;
+
+                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
+                        code);
+            }
+
+            return true;
         }
 
-        public static Gist fork(final String id) {
-            return null;
+        @Nullable
+        public static Gist fork(final String id)
+                throws JaGistException {
+            String strFork;
+
+            try {
+                strFork = JaGistHttps.post("/"+id+"/forks","");
+            } catch(IOException ioe) {
+                int code = JaGistHttps.getLastCode();
+                if(code == 404)
+                    return null;
+
+                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
+                        code);
+            }
+
+            if(strFork == null) //this code may never be reached...
+                return null;
+
+            return new Gist(strFork);
         }
 
-        public static boolean delete(final String id) {
-            return false;
+        public static boolean delete(final String id)
+                throws JaGistException {
+            try {
+                JaGistHttps.delete("/"+id);
+            } catch(IOException ioe) {
+                int code = JaGistHttps.getLastCode();
+                if(code == 404)
+                    return false;
+
+                throw new JaGistException(JaGistHttps.getLastErrorMessage(),
+                        code);
+            }
+
+            return true;
         }
     }
 
