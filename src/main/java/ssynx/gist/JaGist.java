@@ -476,4 +476,25 @@ public final class JaGist {
         }
     }
 
+    public static class CommentGist {
+        public static GistComment[] list(final String id) {
+            return new GistComment[0];
+        }
+
+        public static GistComment get(final String id, final String commentId) {
+            return null;
+        }
+
+        public static GistComment create(final String id) {
+            return null;
+        }
+
+        public static GistComment edit(final String id, final String commentId) {
+            return null;
+        }
+
+        public static boolean delete(final String id, final String commentId) {
+            return false;
+        }
+    }
 }
