@@ -7,6 +7,7 @@ var searchData=
   ['getstrerror',['getStrError',['../classssynx_1_1gist_1_1JaGistException.html#a9599281db39627ddff22c1d08f50695f',1,'ssynx::gist::JaGistException']]],
   ['gist',['Gist',['../classssynx_1_1gist_1_1Gist.html',1,'ssynx::gist']]],
   ['gistchangestatus',['GistChangeStatus',['../classssynx_1_1gist_1_1GistChangeStatus.html',1,'ssynx::gist']]],
+  ['gistcomment',['GistComment',['../classssynx_1_1gist_1_1GistComment.html',1,'ssynx::gist']]],
   ['gistfile',['GistFile',['../classssynx_1_1gist_1_1GistFile.html',1,'ssynx::gist']]],
   ['gistfork',['GistFork',['../classssynx_1_1gist_1_1GistFork.html',1,'ssynx::gist']]],
   ['gisthistory',['GistHistory',['../classssynx_1_1gist_1_1GistHistory.html',1,'ssynx::gist']]],

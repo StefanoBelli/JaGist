@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['editgist',['EditGist',['../classssynx_1_1gist_1_1EditGist.html',1,'ssynx::gist']]]
+  ['commentgist',['CommentGist',['../classssynx_1_1gist_1_1JaGist_1_1CommentGist.html',1,'ssynx::gist::JaGist']]]
 ];
