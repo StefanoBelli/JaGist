@@ -82,7 +82,7 @@ public class Gist {
                 forks.add(new GistFork(
                         (JSONObject) forksArray.get(i)));
         } catch(JSONException exc) {
-            //TODO
+            //just ignore, ik is bad practice but...
         }
 
         try {
@@ -91,7 +91,7 @@ public class Gist {
                 history.add(new GistHistory(
                         (JSONObject) historyArray.get(i)));
         } catch(JSONException exc) {
-            //TODO
+            //just ignore, ik is bad practice but...
         }
     }
 

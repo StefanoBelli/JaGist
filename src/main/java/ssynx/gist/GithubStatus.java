@@ -8,7 +8,7 @@ import java.io.IOException;
 /*!
  * @brief Class containing static methods to fetch GitHub API status
  */
-public class GithubStatus {
+public final class GithubStatus {
 
     /*!
      * @brief get last status update

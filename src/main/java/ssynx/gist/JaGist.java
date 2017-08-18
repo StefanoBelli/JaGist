@@ -2,7 +2,6 @@ package ssynx.gist;
 
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Vector;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -99,11 +98,13 @@ public final class JaGist {
             }
 
             final JSONArray gistsArray = new JSONArray(jsonStr);
-            final Vector<Gist> gists = new Vector<>();
-            for (int i = 0; i < gistsArray.length(); i++)
-                gists.add(new Gist(gistsArray.get(i).toString()));
+            int arrLen = gistsArray.length();
+            Gist[] gists = new Gist[arrLen];
 
-            return gists.toArray(new Gist[gists.size()]);
+            for (int i = 0; i < arrLen; i++)
+                gists[i] = new Gist(gistsArray.get(i).toString());
+
+            return gists;
         }
 
         /*!
@@ -127,12 +128,13 @@ public final class JaGist {
             }
 
             final JSONArray gistsArray = new JSONArray(jsonStr);
-            final Vector<Gist> gists = new Vector<>();
+            int arrLen = gistsArray.length();
+            Gist[] gists = new Gist[arrLen];
 
             for (int i = 0; i < gistsArray.length(); i++)
-                gists.add(new Gist(gistsArray.get(i).toString()));
+                gists[i] = new Gist(gistsArray.get(i).toString());
 
-            return gists.toArray(new Gist[gists.size()]);
+            return gists;
         }
 
         /*!
@@ -155,13 +157,14 @@ public final class JaGist {
                             code);
             }
 
-            final Vector<Gist> gists = new Vector<>();
             final JSONArray gistsArray = new JSONArray(jsonStr);
+            int arrLen = gistsArray.length();
+            Gist[] gists = new Gist[arrLen];
 
             for (int i = 0; i < gistsArray.length(); i++)
-                gists.add(new Gist(gistsArray.get(i).toString()));
+                gists[i] = new Gist(gistsArray.get(i).toString());
 
-            return gists.toArray(new Gist[gists.size()]);
+            return gists;
         }
 
         /*!
@@ -184,13 +187,14 @@ public final class JaGist {
                             code);
             }
 
-            final Vector<Gist> gists = new Vector<>();
             final JSONArray gistsArray = new JSONArray(jsonStr);
+            int arrLen = gistsArray.length();
+            Gist[] gists = new Gist[arrLen];
 
             for (int i = 0; i < gistsArray.length(); i++)
-                gists.add(new Gist(gistsArray.get(i).toString()));
+                gists[i] = new Gist(gistsArray.get(i).toString());
 
-            return gists.toArray(new Gist[gists.size()]);
+            return gists;
         }
 
         /*!
@@ -262,12 +266,15 @@ public final class JaGist {
                             code);
             }
 
-            final Vector<GistHistory> gists = new Vector<>();
             final JSONArray gistsArray = new JSONArray(jsonStr);
-            for (int i = 0; i < gistsArray.length(); i++)
-                gists.add(new GistHistory(new JSONObject(gistsArray.get(i).toString())));
+            int arrLen = gistsArray.length();
+            GistHistory[] historyArr = new GistHistory[arrLen];
 
-            return gists.toArray(new GistHistory[gists.size()]);
+            for (int i = 0; i < arrLen; i++)
+                historyArr[i] = new GistHistory(
+                        new JSONObject(gistsArray.get(i).toString()));
+
+            return historyArr;
         }
 
         /*!
@@ -298,8 +305,6 @@ public final class JaGist {
          */
         public static Gist[] forks(final String id)
                 throws JaGistException {
-            final JSONArray gistsArray;
-            final Vector<Gist> gists = new Vector<>();
             String jsonStr;
 
             try {
@@ -313,11 +318,14 @@ public final class JaGist {
                             code);
             }
 
-            gistsArray = new JSONArray(jsonStr);
-            for (int i = 0; i < gistsArray.length(); i++)
-                gists.add(new Gist(gistsArray.get(i).toString()));
+            final JSONArray gistsArray = new JSONArray(jsonStr);
+            int arrLen = gistsArray.length();
+            Gist[] gists = new Gist[arrLen];
 
-            return gists.toArray(new Gist[gists.size()]);
+            for (int i = 0; i < gistsArray.length(); i++)
+                gists[i] = new Gist(gistsArray.get(i).toString());
+
+            return gists;
         }
     }
 
@@ -473,10 +481,10 @@ public final class JaGist {
          */
         public static GistComment[] list(final String id)
                 throws JaGistException {
-            String fullJson;
+            String jsonStr;
 
             try {
-                fullJson = JaGistHttps.get("/gists/",id+"/comments");
+                jsonStr = JaGistHttps.get("/gists/",id+"/comments");
             } catch(IOException ioe) {
                 int code = JaGistHttps.getLastCode();
                 if(code == 404)
@@ -485,15 +493,15 @@ public final class JaGist {
                 throw new JaGistException(JaGistHttps.getLastErrorMessage(), code);
             }
 
-            Vector<GistComment> commentsGists = new Vector<>();
-            JSONArray comments = new JSONArray(fullJson);
+            final JSONArray gistsCommentArray = new JSONArray(jsonStr);
+            int arrLen = gistsCommentArray.length();
+            GistComment[] gistComments = new GistComment[arrLen];
 
-            for(int i=0;i<comments.length();i++)
-                commentsGists.add(
-                        new GistComment(comments.getJSONObject(i))
-                );
+            for (int i = 0; i < arrLen; i++)
+                gistComments[i] = new GistComment(
+                        gistsCommentArray.getJSONObject(i));
 
-            return commentsGists.toArray(new GistComment[0]);
+            return gistComments;
         }
 
         /*!
