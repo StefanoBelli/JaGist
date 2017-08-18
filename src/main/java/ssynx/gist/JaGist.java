@@ -476,7 +476,16 @@ public final class JaGist {
         }
     }
 
+    /*!
+     * @brief Inner static class which contains Gists commenting methods
+     */
     public static class CommentGist {
+
+        /*!
+         * @brief List comments on a specific gist
+         * @param id : your gist's ID
+         * @return GistComment array, representing comments
+         */
         public static GistComment[] list(final String id)
                 throws JaGistException {
             String fullJson;
@@ -505,6 +514,12 @@ public final class JaGist {
             return commentsGists.toArray(new GistComment[0]);
         }
 
+        /*!
+         * @brief Get a specific comment on gist
+         * @param id: your gist's ID
+         * @param commentId : comment ID
+         * @return Requested comment (may return null)
+         */
         @Nullable
         public static GistComment get(final String id, final int commentId)
                 throws JaGistException {
@@ -526,6 +541,12 @@ public final class JaGist {
             return new GistComment(new JSONObject(fullJson));
         }
 
+        /*!
+         * @brief Create new comment on gist
+         * @param id: your gist ID
+         * @param body: your new comment's content
+         * @return Your new posted comment on gist (may return null)
+         */
         @Nullable
         public static GistComment create(final String id, final String body)
                 throws JaGistException {
@@ -548,6 +569,13 @@ public final class JaGist {
             return new GistComment(new JSONObject(fullJson));
         }
 
+        /*!
+         * @brief Edit a comment on a gist
+         * @param id: your gist's ID
+         * @param commentId: your target comment on a Gist
+         * @param body: new edited content
+         * @return Your edited comment (may return null)
+         */
         @Nullable
         public static GistComment edit(final String id, final int commentId, final String body)
                     throws JaGistException {
@@ -570,6 +598,12 @@ public final class JaGist {
             return new GistComment(new JSONObject(fullJson));
         }
 
+        /*!
+         * @brief Delete a comment
+         * @param id : your gist's ID
+         * @param commentId : comment ID
+         * @return true if correctly removed, false otherwise
+         */
         public static boolean delete(final String id, final int commentId)
                 throws JaGistException {
             try {

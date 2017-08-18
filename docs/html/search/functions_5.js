@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['get',['get',['../classssynx_1_1gist_1_1JaGist_1_1CommentGist.html#a3823ed0501f464c1d55bcba5ab85edac',1,'ssynx::gist::JaGist::CommentGist']]],
   ['getcodeerror',['getCodeError',['../classssynx_1_1gist_1_1JaGistException.html#a7accf4b8ca3dc1a7e5574958ee9eb8f2',1,'ssynx::gist::JaGistException']]],
   ['getrequestcode',['getRequestCode',['../classssynx_1_1gist_1_1JaGist.html#a3e66b0e487c1a6ec7d7435aee660454e',1,'ssynx::gist::JaGist']]],
   ['getrequeststring',['getRequestString',['../classssynx_1_1gist_1_1JaGist.html#af6c5768559fcb454e0246cb2dead147b',1,'ssynx::gist::JaGist']]],

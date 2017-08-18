@@ -2,6 +2,9 @@ package ssynx.gist;
 
 import org.json.JSONObject;
 
+/*!
+ * @brief object representing comment on a gist (methods are self-explaining)
+ */
 public class GistComment {
 
     private final String jsonStr;

@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">JaGist
-   &#160;<span id="projectnumber">0.2.0</span>
+   &#160;<span id="projectnumber">0.3.0</span>
    </div>
    <div id="projectbrief">Fast and easy GitHub Gist API implementation</div>
   </td>
@@ -71,25 +71,257 @@ $(function() {
 <div class="title">ssynx.gist.JaGist.CommentGist Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Inner static class which contains Gists commenting methods.  
+ <a href="classssynx_1_1gist_1_1JaGist_1_1CommentGist.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:aa53fb3d550095352250eb564dd801cdd"><td class="memItemLeft" align="right" valign="top"><a id="aa53fb3d550095352250eb564dd801cdd"></a>
-static <a class="el" href="classssynx_1_1gist_1_1GistComment.html">GistComment</a> []&#160;</td><td class="memItemRight" valign="bottom"><b>list</b> (final String id)</td></tr>
+<tr class="memitem:aa53fb3d550095352250eb564dd801cdd"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classssynx_1_1gist_1_1GistComment.html">GistComment</a> []&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classssynx_1_1gist_1_1JaGist_1_1CommentGist.html#aa53fb3d550095352250eb564dd801cdd">list</a> (final String id)  throws JaGistException </td></tr>
+<tr class="memdesc:aa53fb3d550095352250eb564dd801cdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">List comments on a specific gist.  <a href="#aa53fb3d550095352250eb564dd801cdd">More...</a><br /></td></tr>
 <tr class="separator:aa53fb3d550095352250eb564dd801cdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab827a800bf9efcbf29201dfd1a040c87"><td class="memItemLeft" align="right" valign="top"><a id="ab827a800bf9efcbf29201dfd1a040c87"></a>
-static <a class="el" href="classssynx_1_1gist_1_1GistComment.html">GistComment</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> (final String id, final String commentId)</td></tr>
-<tr class="separator:ab827a800bf9efcbf29201dfd1a040c87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa05e7722e40479c67195c96755a9a8b9"><td class="memItemLeft" align="right" valign="top"><a id="aa05e7722e40479c67195c96755a9a8b9"></a>
-static <a class="el" href="classssynx_1_1gist_1_1GistComment.html">GistComment</a>&#160;</td><td class="memItemRight" valign="bottom"><b>create</b> (final String id)</td></tr>
-<tr class="separator:aa05e7722e40479c67195c96755a9a8b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b935398ce76079316b26ba66bf1dcb2"><td class="memItemLeft" align="right" valign="top"><a id="a3b935398ce76079316b26ba66bf1dcb2"></a>
-static <a class="el" href="classssynx_1_1gist_1_1GistComment.html">GistComment</a>&#160;</td><td class="memItemRight" valign="bottom"><b>edit</b> (final String id, final String commentId)</td></tr>
-<tr class="separator:a3b935398ce76079316b26ba66bf1dcb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cca47c0549ff8487f46fdbf1710b3fd"><td class="memItemLeft" align="right" valign="top"><a id="a8cca47c0549ff8487f46fdbf1710b3fd"></a>
-static boolean&#160;</td><td class="memItemRight" valign="bottom"><b>delete</b> (final String id, final String commentId)</td></tr>
-<tr class="separator:a8cca47c0549ff8487f46fdbf1710b3fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3823ed0501f464c1d55bcba5ab85edac"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classssynx_1_1gist_1_1GistComment.html">GistComment</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classssynx_1_1gist_1_1JaGist_1_1CommentGist.html#a3823ed0501f464c1d55bcba5ab85edac">get</a> (final String id, final int commentId)  throws JaGistException </td></tr>
+<tr class="memdesc:a3823ed0501f464c1d55bcba5ab85edac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a specific comment on gist.  <a href="#a3823ed0501f464c1d55bcba5ab85edac">More...</a><br /></td></tr>
+<tr class="separator:a3823ed0501f464c1d55bcba5ab85edac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa7c9dea1467ebdd13f1255292101472"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classssynx_1_1gist_1_1GistComment.html">GistComment</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classssynx_1_1gist_1_1JaGist_1_1CommentGist.html#aaa7c9dea1467ebdd13f1255292101472">create</a> (final String id, final String body)  throws JaGistException </td></tr>
+<tr class="memdesc:aaa7c9dea1467ebdd13f1255292101472"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create new comment on gist.  <a href="#aaa7c9dea1467ebdd13f1255292101472">More...</a><br /></td></tr>
+<tr class="separator:aaa7c9dea1467ebdd13f1255292101472"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5853a205a33911192381c9925939af2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classssynx_1_1gist_1_1GistComment.html">GistComment</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classssynx_1_1gist_1_1JaGist_1_1CommentGist.html#ab5853a205a33911192381c9925939af2">edit</a> (final String id, final int commentId, final String body)  throws JaGistException </td></tr>
+<tr class="memdesc:ab5853a205a33911192381c9925939af2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edit a comment on a gist.  <a href="#ab5853a205a33911192381c9925939af2">More...</a><br /></td></tr>
+<tr class="separator:ab5853a205a33911192381c9925939af2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39791d929918aea7f64c1c13c889835a"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classssynx_1_1gist_1_1JaGist_1_1CommentGist.html#a39791d929918aea7f64c1c13c889835a">delete</a> (final String id, final int commentId)  throws JaGistException </td></tr>
+<tr class="memdesc:a39791d929918aea7f64c1c13c889835a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a comment.  <a href="#a39791d929918aea7f64c1c13c889835a">More...</a><br /></td></tr>
+<tr class="separator:a39791d929918aea7f64c1c13c889835a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Inner static class which contains Gists commenting methods. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aaa7c9dea1467ebdd13f1255292101472"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa7c9dea1467ebdd13f1255292101472">&#9670;&nbsp;</a></span>create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classssynx_1_1gist_1_1GistComment.html">GistComment</a> ssynx.gist.JaGist.CommentGist.create </td>
+          <td>(</td>
+          <td class="paramtype">final String&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">final String&#160;</td>
+          <td class="paramname"><em>body</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws <a class="el" href="classssynx_1_1gist_1_1JaGistException.html">JaGistException</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create new comment on gist. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>your gist ID </td></tr>
+    <tr><td class="paramname">body</td><td>your new comment's content </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Your new posted comment on gist (may return null) </dd></dl>
+
+</div>
+</div>
+<a id="a39791d929918aea7f64c1c13c889835a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39791d929918aea7f64c1c13c889835a">&#9670;&nbsp;</a></span>delete()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static boolean ssynx.gist.JaGist.CommentGist.delete </td>
+          <td>(</td>
+          <td class="paramtype">final String&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">final int&#160;</td>
+          <td class="paramname"><em>commentId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws <a class="el" href="classssynx_1_1gist_1_1JaGistException.html">JaGistException</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Delete a comment. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>: your gist's ID </td></tr>
+    <tr><td class="paramname">commentId</td><td>: comment ID </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if correctly removed, false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="ab5853a205a33911192381c9925939af2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5853a205a33911192381c9925939af2">&#9670;&nbsp;</a></span>edit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classssynx_1_1gist_1_1GistComment.html">GistComment</a> ssynx.gist.JaGist.CommentGist.edit </td>
+          <td>(</td>
+          <td class="paramtype">final String&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">final int&#160;</td>
+          <td class="paramname"><em>commentId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">final String&#160;</td>
+          <td class="paramname"><em>body</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws <a class="el" href="classssynx_1_1gist_1_1JaGistException.html">JaGistException</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Edit a comment on a gist. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>your gist's ID </td></tr>
+    <tr><td class="paramname">commentId</td><td>your target comment on a <a class="el" href="classssynx_1_1gist_1_1Gist.html" title="object representing a single gist (methods are self-explaining) ">Gist</a> </td></tr>
+    <tr><td class="paramname">body</td><td>new edited content </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Your edited comment (may return null) </dd></dl>
+
+</div>
+</div>
+<a id="a3823ed0501f464c1d55bcba5ab85edac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3823ed0501f464c1d55bcba5ab85edac">&#9670;&nbsp;</a></span>get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classssynx_1_1gist_1_1GistComment.html">GistComment</a> ssynx.gist.JaGist.CommentGist.get </td>
+          <td>(</td>
+          <td class="paramtype">final String&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">final int&#160;</td>
+          <td class="paramname"><em>commentId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws <a class="el" href="classssynx_1_1gist_1_1JaGistException.html">JaGistException</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a specific comment on gist. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>your gist's ID </td></tr>
+    <tr><td class="paramname">commentId</td><td>: comment ID </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Requested comment (may return null) </dd></dl>
+
+</div>
+</div>
+<a id="aa53fb3d550095352250eb564dd801cdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa53fb3d550095352250eb564dd801cdd">&#9670;&nbsp;</a></span>list()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classssynx_1_1gist_1_1GistComment.html">GistComment</a> [] ssynx.gist.JaGist.CommentGist.list </td>
+          <td>(</td>
+          <td class="paramtype">final String&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td> throws <a class="el" href="classssynx_1_1gist_1_1JaGistException.html">JaGistException</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List comments on a specific gist. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>: your gist's ID </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classssynx_1_1gist_1_1GistComment.html" title="object representing comment on a gist (methods are self-explaining) ">GistComment</a> array, representing comments </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/main/java/ssynx/gist/JaGist.java</li>
 </ul>
