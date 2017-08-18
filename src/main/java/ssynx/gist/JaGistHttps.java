@@ -196,4 +196,19 @@ class JaGistHttps {
             assignLast(connection);
         }
     }
+
+    static String getApiStatus(final String what)
+            throws IOException {
+        final URL target = new URL("https://status.github.com/api/"+what+".json");
+        final HttpsURLConnection connection = (HttpsURLConnection) target.openConnection();
+
+        String res;
+        try {
+            res = getResponse(connection.getInputStream());
+        } finally {
+            assignLast(connection);
+        }
+
+        return res;
+    }
 }

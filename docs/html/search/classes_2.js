@@ -7,5 +7,6 @@ var searchData=
   ['gistfile',['GistFile',['../classssynx_1_1gist_1_1GistFile.html',1,'ssynx::gist']]],
   ['gistfork',['GistFork',['../classssynx_1_1gist_1_1GistFork.html',1,'ssynx::gist']]],
   ['gisthistory',['GistHistory',['../classssynx_1_1gist_1_1GistHistory.html',1,'ssynx::gist']]],
-  ['gistowner',['GistOwner',['../classssynx_1_1gist_1_1GistOwner.html',1,'ssynx::gist']]]
+  ['gistowner',['GistOwner',['../classssynx_1_1gist_1_1GistOwner.html',1,'ssynx::gist']]],
+  ['githubstatus',['GithubStatus',['../classssynx_1_1gist_1_1GithubStatus.html',1,'ssynx::gist']]]
 ];
