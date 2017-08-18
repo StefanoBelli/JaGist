@@ -12,7 +12,8 @@ class JaGistHttps {
     private static int lastCode = 0;
     private static String lastErrorMessage = "";
 
-    static String readFile(File f) throws IOException {
+    static String readFile(File f)
+            throws IOException {
         StringBuilder content = new StringBuilder();
 
         FileInputStream ist = new FileInputStream(f);

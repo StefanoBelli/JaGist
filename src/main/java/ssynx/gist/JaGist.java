@@ -477,24 +477,112 @@ public final class JaGist {
     }
 
     public static class CommentGist {
-        public static GistComment[] list(final String id) {
-            return new GistComment[0];
+        public static GistComment[] list(final String id)
+                throws JaGistException {
+            String fullJson;
+
+            try {
+                fullJson = JaGistHttps.get("/gists/",id+"/comments");
+            } catch(IOException ioe) {
+                int code = JaGistHttps.getLastCode();
+                if(code == 404)
+                    return new GistComment[0];
+
+                throw new JaGistException(JaGistHttps.getLastErrorMessage(), code);
+            }
+
+            if(fullJson == null)
+                return new GistComment[0];
+
+            Vector<GistComment> commentsGists = new Vector<>();
+            JSONArray comments = new JSONArray(fullJson);
+
+            for(int i=0;i<comments.length();i++)
+                commentsGists.add(
+                        new GistComment(comments.getJSONObject(i))
+                );
+
+            return commentsGists.toArray(new GistComment[0]);
         }
 
-        public static GistComment get(final String id, final String commentId) {
-            return null;
+        @Nullable
+        public static GistComment get(final String id, final int commentId)
+                throws JaGistException {
+            String fullJson;
+
+            try {
+                fullJson = JaGistHttps.get("/gists/",id+"/comments/"+commentId);
+            } catch(IOException ioe) {
+                int code = JaGistHttps.getLastCode();
+                if(code == 404)
+                    return null;
+
+                throw new JaGistException(JaGistHttps.getLastErrorMessage(), code);
+            }
+
+            if(fullJson == null)
+                return null;
+
+            return new GistComment(new JSONObject(fullJson));
         }
 
-        public static GistComment create(final String id) {
-            return null;
+        @Nullable
+        public static GistComment create(final String id, final String body)
+                throws JaGistException {
+            final String encodedBody = "{ \"body\": \""+body+"\" }";
+            String fullJson;
+
+            try {
+                fullJson = JaGistHttps.post("/"+id+"/comments",encodedBody);
+            } catch(IOException ioe) {
+                int code = JaGistHttps.getLastCode();
+                if(code == 404)
+                    return null;
+
+                throw new JaGistException(JaGistHttps.getLastErrorMessage(), code);
+            }
+
+            if(fullJson == null)
+                return null;
+
+            return new GistComment(new JSONObject(fullJson));
         }
 
-        public static GistComment edit(final String id, final String commentId) {
-            return null;
+        @Nullable
+        public static GistComment edit(final String id, final int commentId, final String body)
+                    throws JaGistException {
+            final String encodedBody = "{ \"body\": \""+body+"\" }";
+            String fullJson;
+
+            try {
+                fullJson = JaGistHttps.patch("/"+id+"/comments/"+commentId,encodedBody);
+            } catch(IOException ioe) {
+                int code = JaGistHttps.getLastCode();
+                if(code == 404)
+                    return null;
+
+                throw new JaGistException(JaGistHttps.getLastErrorMessage(), code);
+            }
+
+            if(fullJson == null)
+                return null;
+
+            return new GistComment(new JSONObject(fullJson));
         }
 
-        public static boolean delete(final String id, final String commentId) {
-            return false;
+        public static boolean delete(final String id, final int commentId)
+                throws JaGistException {
+            try {
+                JaGistHttps.delete("/"+id+"/comments/"+commentId);
+            } catch(IOException ioe) {
+                int code = JaGistHttps.getLastCode();
+                if(code == 404)
+                    return false;
+
+                throw new JaGistException(JaGistHttps.getLastErrorMessage(), JaGistHttps.getLastCode());
+            }
+
+            return true;
         }
     }
 }
