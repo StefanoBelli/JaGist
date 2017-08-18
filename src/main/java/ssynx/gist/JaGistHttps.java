@@ -5,7 +5,6 @@ import java.nio.charset.Charset;
 import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 import java.util.Base64;
-import javax.annotation.Nullable;
 
 class JaGistHttps {
     private static String basicAuth = null;
@@ -32,20 +31,20 @@ class JaGistHttps {
         return content.toString();
     }
 
-    @Nullable
-    private static String getResponse(final InputStream stream) {
+    private static String getResponse(final InputStream stream)
+            throws IOException {
         StringBuilder full = new StringBuilder();
         String line;
 
-        BufferedReader streamBuf = new BufferedReader(
-                new InputStreamReader(stream,Charset.forName("UTF-8")));
+        InputStreamReader reader = new InputStreamReader(stream,Charset.forName("UTF-8"));
+        try (BufferedReader streamBuf = new BufferedReader(reader)) {
 
-        try {
             while ((line = streamBuf.readLine()) != null)
                 full.append(line);
-            streamBuf.close();
-        } catch(IOException ioe) {
-            return null;
+
+        } finally {
+            reader.close();
+            stream.close();
         }
 
         return full.toString();
@@ -74,7 +73,6 @@ class JaGistHttps {
         return lastErrorMessage;
     }
 
-    @Nullable
     static String get()
             throws IOException {
         final URL target = new URL("https://api.github.com/gists");
@@ -90,7 +88,6 @@ class JaGistHttps {
         return res;
     }
 
-    @Nullable
     static String get(final String getwhat, final String operation)
             throws IOException {
         final URL target = new URL("https://api.github.com"+getwhat+operation);
@@ -108,7 +105,6 @@ class JaGistHttps {
         return res;
     }
 
-    @Nullable
     static String post(final String operation, final String what)
             throws IOException {
         final URL target = new URL("https://api.github.com/gists" + operation);
@@ -121,9 +117,12 @@ class JaGistHttps {
         if(basicAuth != null)
             connection.setRequestProperty("Authorization",basicAuth);
 
-        final DataOutputStream requestBody = new DataOutputStream(connection.getOutputStream());
-        requestBody.writeBytes(what);
-        requestBody.close();
+        OutputStream ost = connection.getOutputStream();
+        try(final DataOutputStream requestBody = new DataOutputStream(ost)) {
+            requestBody.writeBytes(what);
+        } finally {
+            ost.close();
+        }
 
         String res;
         try {
@@ -135,7 +134,6 @@ class JaGistHttps {
         return res;
     }
 
-    @Nullable
     static String patch(final String operation, final String what)
             throws IOException {
         final URL target = new URL("https://api.github.com/gists" + operation);
@@ -149,9 +147,12 @@ class JaGistHttps {
         if (basicAuth != null)
             connection.setRequestProperty("Authorization", basicAuth);
 
-        final DataOutputStream requestBody = new DataOutputStream(connection.getOutputStream());
-        requestBody.writeBytes(what);
-        requestBody.close();
+        OutputStream ost = connection.getOutputStream();
+        try(final DataOutputStream requestBody = new DataOutputStream(ost)) {
+            requestBody.writeBytes(what);
+        } finally {
+            ost.close();
+        }
 
         String res;
         try {
