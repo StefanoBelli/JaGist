@@ -2,7 +2,6 @@ package ssynx.gist;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.math.BigInteger;
 
 /*!
  * @brief object representing a gist file (methods are self-explaining)
@@ -11,7 +10,7 @@ public class GistFile {
 
     private final String jsonPiece;
 
-    private final BigInteger size;
+    private final int size;
     private final String rawUrl;
     private final String type;
     private boolean truncated;
@@ -20,7 +19,7 @@ public class GistFile {
     GistFile(final JSONObject fileObject) {
         jsonPiece = fileObject.toString();
 
-        size = fileObject.getBigInteger("size");
+        size = fileObject.getInt("size");
         rawUrl = fileObject.getString("raw_url");
         type = fileObject.getString("type");
         try {
@@ -36,7 +35,7 @@ public class GistFile {
         return jsonPiece;
     }
 
-    public BigInteger getSize() {
+    public int getSize() {
         return size;
     }
 
